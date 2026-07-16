@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://boatlog.civildigital.co.uk/sitemap.xml
