@@ -1,0 +1,17 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BoatLog logo mark">
+  <!-- Stylised "B" formed by a boat hull, with a check mark and a river wave -->
+  <!-- Left stem of the B -->
+  <path d="M40 24 V78" stroke="#0B1F3A" stroke-width="9" stroke-linecap="round"/>
+  <!-- Upper bowl (boat prow) -->
+  <path d="M40 27 H60 C71 27 78 33 78 42 C78 51 71 56 60 56 H40"
+        stroke="#0B1F3A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Lower bowl -->
+  <path d="M40 56 H63 C74 56 82 61 82 70 C82 79 74 84 63 84 H40"
+        stroke="#0B1F3A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Check mark -->
+  <path d="M49 55 L57 63 L73 45"
+        stroke="#2EC4B6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- River wave -->
+  <path d="M24 96 C36 88 44 104 58 96 C72 88 80 104 94 96"
+        stroke="#2EC4B6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
