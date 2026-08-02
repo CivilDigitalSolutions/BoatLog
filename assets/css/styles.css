@@ -64,6 +64,8 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
+html, body { max-width: 100%; overflow-x: hidden; }
+
 body {
   font-family: var(--font-sans);
   font-size: var(--fs-400);
@@ -75,6 +77,7 @@ body {
 }
 
 img, svg { display: block; max-width: 100%; }
+table, pre, iframe { max-width: 100%; }
 a { color: var(--teal-dark); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
