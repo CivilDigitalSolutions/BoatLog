@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boat Damage Reporting &amp; Out-of-Service Tracking | BoatLog</title>
+  <meta name="description" content="Boat damage reporting software for rowing clubs. Log damage the moment it happens, flag a boat out of service, and track repairs from report to fixed.">
+  <link rel="canonical" href="https://boatlog.civildigital.co.uk/damage-reporting/">
+  <meta name="theme-color" content="#0B1F3A">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BoatLog">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Boat Damage Reporting &amp; Out-of-Service Tracking | BoatLog">
+  <meta property="og:description" content="Log boat damage the moment it happens, flag a boat out of service, and track repairs — from report to fixed.">
+  <meta property="og:url" content="https://boatlog.civildigital.co.uk/damage-reporting/">
+  <meta property="og:image" content="https://boatlog.civildigital.co.uk/images/og-default.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BoatLog — boat damage reporting and out-of-service tracking">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://boatlog.civildigital.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Damage Reporting", "item": "https://boatlog.civildigital.co.uk/damage-reporting/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://boatlog.civildigital.co.uk/#organization",
+    "name": "Civil Digital",
+    "url": "https://civildigital.co.uk/",
+    "logo": "https://boatlog.civildigital.co.uk/assets/brand/boatlog-mark.png",
+    "email": "info@civildigital.co.uk",
+    "telephone": "+44 7568 296136",
+    "address": { "@type": "PostalAddress", "addressLocality": "Bedford", "addressCountry": "GB" },
+    "sameAs": ["https://civildigital.co.uk/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do members report boat damage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "At the same point they sign a boat back in — on the boathouse kiosk or their own device — a member can flag damage against that boat, with a short description of what happened and how bad it looks. It's logged against the outing, so there's no confusion about when or how it happened." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when a boat is flagged out of service?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An out-of-service boat is removed from what's available to book or sign out, so nobody can accidentally take a damaged boat onto the water. It stays flagged until whoever's responsible for the fleet marks it fixed and back in service." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can we track repair history for each boat?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — each boat builds up a record of damage reported against it and when it was returned to service, so your committee has a maintenance history to refer back to rather than relying on someone's memory of \"didn't we already fix that riggers?\"" }
+      },
+      {
+        "@type": "Question",
+        "name": "Does damage reporting work offline at the boathouse?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Damage reporting sits on the same offline-first sign-out kiosk, so a member can flag damage the moment they notice it, even with no signal at the boathouse — it syncs once the device is back online." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="banner">
+    <strong>Coming soon</strong> &nbsp;&bull;&nbsp; BoatLog is in development for UK rowing clubs — join the waitlist below.
+  </div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="BoatLog home">
+        <img class="brand__mark" src="/assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="40" height="40">
+        <span class="brand__text">Boat<span class="log">Log</span></span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <ul class="nav__links" id="primary-nav">
+        <li><a href="/boat-sign-out/">Boat Sign-Out</a></li>
+        <li><a href="/safety/">Safety</a></li>
+        <li><a href="/incident-reporting/">Incident Reporting</a></li>
+        <li><a href="/damage-reporting/">Damage Reporting</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li class="nav__cta"><a class="btn btn--primary" href="/#waitlist">Join waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="breadcrumb"><a href="/">Home</a> / Damage Reporting</p>
+        <h1>Boat damage reporting and out-of-service tracking for rowing clubs</h1>
+        <p>Log damage the moment it happens, flag a boat out of service before anyone else takes it out, and track repairs through to fixed.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="prose">
+          <h2>Damage that doesn't get reported is damage that gets worse</h2>
+          <p>Every club has a boat with a hairline crack that "someone mentioned once." Damage that isn't logged properly tends to get rowed on anyway — because nobody wrote it down, nobody told the next crew, and by the time it's noticed by a coach or captain it's a bigger repair than it needed to be. A sticky note on the rack or a message in a group chat that scrolls away isn't a record; it's a rumour.</p>
+          <p>A boat fleet is also the club's biggest single asset. Knowing exactly what state it's in — what's fully serviceable, what's flagged, what's being repaired — matters for planning outings, budgeting for repairs, and simply not sending a novice crew out in a boat that shouldn't be on the water.</p>
+
+          <h2>Report damage in the moment, not after the fact</h2>
+          <p>BoatLog lets whoever notices damage report it there and then — at the boathouse kiosk when a boat is signed back in, or from their own device. A short note on what happened and how bad it looks is enough to get it on record, attached to the boat and the outing it came from, so there's no ambiguity about when or how it happened.</p>
+
+          <h2>Flag it out of service, automatically taken out of the picture</h2>
+          <p>Once a boat is flagged out of service, it drops out of what's available to book or sign out — so nobody can grab it by mistake before it's been looked at. It stays flagged until someone responsible for the fleet marks the repair done and puts it back into circulation. No more relying on a boat being physically turned around on the rack as the only signal that it's out of action.</p>
+
+          <h2>A maintenance history for every boat</h2>
+          <p>Because every damage report is logged against a specific boat, a history builds up over time — what's gone wrong, when, and when it was fixed. That's useful for spotting a boat that keeps coming back with the same fault, for planning maintenance spend, and for handover when committee roles change hands, instead of that knowledge living in one outgoing bosun's head.</p>
+
+          <h2>Works the same way offline</h2>
+          <p>Damage reporting runs on the same offline-first foundation as <a href="/boat-sign-out/">boat sign-out</a> — so a report logged with no signal at the water's edge still saves to the device and syncs once it's back online. Nothing gets lost because the boathouse WiFi was down.</p>
+
+          <p>Damage reporting also plugs into the rest of BoatLog: a damaged boat can be part of what a <a href="/incident-reporting/">British Rowing incident report</a> covers, and it's one more thing your <a href="/safety/">safety picture</a> takes into account when deciding what's fit to go out.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="faq-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-h">Damage reporting FAQ</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>How do members report boat damage?</summary>
+            <p>At the same point they sign a boat back in — on the boathouse kiosk or their own device — a member can flag damage against that boat, with a short description of what happened. It's logged against the outing, so there's no confusion about when or how it happened.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens when a boat is flagged out of service?</summary>
+            <p>An out-of-service boat is removed from what's available to book or sign out, so nobody can accidentally take a damaged boat onto the water. It stays flagged until whoever's responsible for the fleet marks it fixed and back in service.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we track repair history for each boat?</summary>
+            <p>Yes — each boat builds up a record of damage reported against it and when it was returned to service, so your committee has a maintenance history to refer back to.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does damage reporting work offline at the boathouse?</summary>
+            <p>Yes. Damage reporting sits on the same offline-first sign-out kiosk, so a member can flag damage the moment they notice it, even with no signal — it syncs once the device is back online.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="related-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Related</p>
+          <h2 id="related-h">More from BoatLog</h2>
+        </div>
+        <div class="link-grid">
+          <a class="link-card" href="/boat-sign-out/">
+            <span class="link-card__title">Boat sign-out &amp; boathouse kiosk</span>
+            <span class="link-card__desc">Where damage reports connect to — the sign-out that starts every outing.</span>
+          </a>
+          <a class="link-card" href="/safety/">
+            <span class="link-card__title">Safety, RAG flags &amp; overdue-outing alerts</span>
+            <span class="link-card__desc">How a damaged boat feeds into your club's wider safety picture.</span>
+          </a>
+          <a class="link-card" href="/incident-reporting/">
+            <span class="link-card__title">Incident reporting (British Rowing-ready)</span>
+            <span class="link-card__desc">When damage is part of a wider incident, not just a repair job.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="waitlist" aria-labelledby="waitlist-h">
+      <div class="container">
+        <div class="cta">
+          <h2 id="waitlist-h">Be first to try damage reporting on BoatLog</h2>
+          <p>We're putting the finishing touches on BoatLog. Leave your email and we'll let you know the moment your club can sign up.</p>
+          <form id="waitlist-form" class="cta__form">
+            <label class="visually-hidden" for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@yourclub.org" required>
+            <button class="btn btn--primary" type="submit">Notify me</button>
+          </form>
+          <p class="form-status" id="waitlist-status">No spam — just one email when we launch.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img class="brand__mark" src="/assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="36" height="36">
+            <span class="brand__text">Boat<span class="log">Log</span></span>
+          </a>
+          <p>Simple membership, offline boat sign-out and damage-reporting software for UK rowing clubs.</p>
+        </div>
+        <nav aria-label="Product">
+          <h2>Product</h2>
+          <ul class="footer-links">
+            <li><a href="/boat-sign-out/">Boat sign-out &amp; kiosk</a></li>
+            <li><a href="/safety/">Safety &amp; RAG flags</a></li>
+            <li><a href="/incident-reporting/">Incident reporting</a></li>
+            <li><a href="/damage-reporting/">Damage reporting</a></li>
+            <li><a href="/#waitlist">Join waitlist</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Guides">
+          <h2>Guides</h2>
+          <ul class="footer-links">
+            <li><a href="/guides/">All guides</a></li>
+            <li><a href="/guides/boat-sign-out-system/">Boat sign-out system</a></li>
+            <li><a href="/guides/british-rowing-incident-reporting/">BR incident reporting</a></li>
+            <li><a href="/guides/rag-flags-for-rowing-outings/">RAG flags for outings</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Contact Info</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:info@civildigital.co.uk">info@civildigital.co.uk</a></li>
+            <li><a href="https://wa.me/447568296136">WhatsApp: +44 7568 296136</a></li>
+            <li>Bedford, United Kingdom</li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> BoatLog — a Civil Digital product. All rights reserved.</p>
+        <p>Sign in. Row safe. Log out.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

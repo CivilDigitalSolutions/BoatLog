@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rowing Club Incident Reporting Software (British Rowing-ready) | BoatLog</title>
+  <meta name="description" content="Rowing club incident reporting software that captures what British Rowing's 24-hour incident report needs, at the time it happens. Not a replacement for British Rowing.">
+  <link rel="canonical" href="https://boatlog.civildigital.co.uk/incident-reporting/">
+  <meta name="theme-color" content="#0B1F3A">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BoatLog">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Rowing Club Incident Reporting Software (British Rowing-ready) | BoatLog">
+  <meta property="og:description" content="Capture what British Rowing's incident report needs, at the time it happens — then file it correctly, within 24 hours.">
+  <meta property="og:url" content="https://boatlog.civildigital.co.uk/incident-reporting/">
+  <meta property="og:image" content="https://boatlog.civildigital.co.uk/images/og-default.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BoatLog — rowing club incident reporting software">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://boatlog.civildigital.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Incident Reporting", "item": "https://boatlog.civildigital.co.uk/incident-reporting/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://boatlog.civildigital.co.uk/#organization",
+    "name": "Civil Digital",
+    "url": "https://civildigital.co.uk/",
+    "logo": "https://boatlog.civildigital.co.uk/assets/brand/boatlog-mark.png",
+    "email": "info@civildigital.co.uk",
+    "telephone": "+44 7568 296136",
+    "address": { "@type": "PostalAddress", "addressLocality": "Bedford", "addressCountry": "GB" },
+    "sameAs": ["https://civildigital.co.uk/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I still need to report to British Rowing directly?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, always. BoatLog helps your club gather and hold the details of what happened — it does not submit anything to British Rowing on your behalf. Incidents and near misses must still be reported through British Rowing's own incident reporting system." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is British Rowing's incident reporting deadline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "British Rowing asks for incidents to be reported online within 24 hours of the incident, through their incident reporting system. This applies to clubs, members, non-members and events." }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as an incident that needs reporting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "British Rowing's guidance is broad: any incident that causes harm or damage, however trivial, any injury or health issue, and any near miss — because near misses often reveal a risk before it causes a serious incident." }
+      },
+      {
+        "@type": "Question",
+        "name": "What details does BoatLog capture for an incident?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A summary of what happened, which boat and crew were involved, and roughly when and where — captured against the outing it relates to, at the boathouse, rather than reconstructed from memory later. This is intended to help your club complete British Rowing's own report accurately, not to replace the fields British Rowing itself asks for, such as witness statements or a sketch of the incident." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is BoatLog officially affiliated with British Rowing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. BoatLog is an independent product built by Civil Digital. It is not an official British Rowing tool, and it is not endorsed by British Rowing. It's built to help clubs meet British Rowing's existing incident reporting expectations, not to replace them." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="banner">
+    <strong>Coming soon</strong> &nbsp;&bull;&nbsp; BoatLog is in development for UK rowing clubs — join the waitlist below.
+  </div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="BoatLog home">
+        <img class="brand__mark" src="/assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="40" height="40">
+        <span class="brand__text">Boat<span class="log">Log</span></span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <ul class="nav__links" id="primary-nav">
+        <li><a href="/boat-sign-out/">Boat Sign-Out</a></li>
+        <li><a href="/safety/">Safety</a></li>
+        <li><a href="/incident-reporting/">Incident Reporting</a></li>
+        <li><a href="/damage-reporting/">Damage Reporting</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li class="nav__cta"><a class="btn btn--primary" href="/#waitlist">Join waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="breadcrumb"><a href="/">Home</a> / Incident Reporting</p>
+        <h1>Rowing club incident reporting software, built around British Rowing's process</h1>
+        <p>Capture what happened at the time it happens, so your club can file an accurate report to British Rowing — within the 24 hours they ask for.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="prose">
+          <div class="callout">
+            <strong>BoatLog is not British Rowing, and it does not submit reports to them.</strong> British Rowing runs its own <a href="https://www.britishrowing.org/knowledge/club-support/club-governance/club-safety/incident-reporting/" target="_blank" rel="noopener">incident reporting system</a>, and every incident still needs to be reported there directly. BoatLog's job is to help your club capture the details accurately at the time, so filing that report is quick and complete rather than a reconstruction from memory a week later.
+          </div>
+
+          <h2>What British Rowing actually asks for</h2>
+          <p>British Rowing's guidance is clear and worth knowing whether or not you use BoatLog: incidents should be reported online within <strong>24 hours</strong> of the incident. That covers anything that causes harm or damage, however trivial, any injury or health issue, and — importantly — near misses, because they often flag a risk before it causes something worse. Reports can be made by clubs, members, non-members and event organisers.</p>
+          <p>A complete report needs a detailed summary (date, time, boat IDs, crew, light, wind and stream conditions), a sketch of where boats and obstructions were and which way everyone was travelling, statements from anyone involved or who witnessed it, details of any injuries and first aid given, and what the club is doing to stop it happening again. It's the club's Rowing Safety Adviser and committee who are responsible for making sure members know what counts as reportable and how to do it.</p>
+
+          <h2>Where BoatLog fits</h2>
+          <p>The hardest part of a good incident report usually isn't the writing — it's the details that get lost between "it happened on the water" and "someone sits down to write it up." Who was in the boat. What time it actually was. What the conditions were like. BoatLog lets whoever's involved log those details against the outing itself, at the boathouse, while they're still fresh — because every incident starts from an outing that was already <a href="/boat-sign-out/">signed out</a> and, ideally, already <a href="/safety/">RAG-flagged</a> for conditions.</p>
+          <p>From there, your Rowing Safety Adviser has an accurate starting point to complete British Rowing's own report within the 24-hour window, rather than chasing crew members for their recollection days later.</p>
+
+          <h2>What BoatLog is not</h2>
+          <p>To be clear: BoatLog does not submit anything to British Rowing, does not replace their incident reporting portal, and is not an official British Rowing product. If you take one thing from this page, make it this — report every incident and near miss to British Rowing directly, within 24 hours, using their system. BoatLog is there to make sure your club has the details ready when you do.</p>
+
+          <h2>The rest of BoatLog's safety picture</h2>
+          <p>Incident reporting is one part of a wider set of safety tools — see how <a href="/safety/">RAG flags and overdue-outing alerts</a> work, and how it all starts with an accurate <a href="/boat-sign-out/">boat sign-out</a>. If you want a plain-language walkthrough of the whole reporting process, read our guide: <a href="/guides/british-rowing-incident-reporting/">British Rowing incident reporting — a club's step-by-step guide</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="faq-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-h">Incident reporting FAQ</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>Do I still need to report to British Rowing directly?</summary>
+            <p>Yes, always. BoatLog helps your club gather and hold the details of what happened — it does not submit anything to British Rowing on your behalf. Incidents and near misses must still be reported through British Rowing's own incident reporting system.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is British Rowing's incident reporting deadline?</summary>
+            <p>British Rowing asks for incidents to be reported online within 24 hours of the incident, through their incident reporting system. This applies to clubs, members, non-members and events.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What counts as an incident that needs reporting?</summary>
+            <p>British Rowing's guidance is broad: any incident that causes harm or damage, however trivial, any injury or health issue, and any near miss — because near misses often reveal a risk before it causes a serious incident.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What details does BoatLog capture for an incident?</summary>
+            <p>A summary of what happened, which boat and crew were involved, and roughly when and where — captured against the outing it relates to. This is intended to help your club complete British Rowing's own report accurately, not to replace fields British Rowing itself asks for, such as witness statements or a sketch of the incident.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is BoatLog officially affiliated with British Rowing?</summary>
+            <p>No. BoatLog is an independent product built by Civil Digital. It is not an official British Rowing tool and is not endorsed by British Rowing. It's built to help clubs meet British Rowing's existing incident reporting expectations, not to replace them.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="related-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Related</p>
+          <h2 id="related-h">More from BoatLog</h2>
+        </div>
+        <div class="link-grid">
+          <a class="link-card" href="/safety/">
+            <span class="link-card__title">Safety, RAG flags &amp; overdue-outing alerts</span>
+            <span class="link-card__desc">The wider safety picture incident logging fits into.</span>
+          </a>
+          <a class="link-card" href="/guides/british-rowing-incident-reporting/">
+            <span class="link-card__title">Guide: British Rowing incident reporting</span>
+            <span class="link-card__desc">A step-by-step walkthrough of reporting an incident correctly and on time.</span>
+          </a>
+          <a class="link-card" href="/boat-sign-out/">
+            <span class="link-card__title">Boat sign-out &amp; boathouse kiosk</span>
+            <span class="link-card__desc">Where every outing — and every incident record — starts.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="waitlist" aria-labelledby="waitlist-h">
+      <div class="container">
+        <div class="cta">
+          <h2 id="waitlist-h">Be first to try BoatLog's incident logging</h2>
+          <p>We're putting the finishing touches on BoatLog. Leave your email and we'll let you know the moment your club can sign up.</p>
+          <form id="waitlist-form" class="cta__form">
+            <label class="visually-hidden" for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@yourclub.org" required>
+            <button class="btn btn--primary" type="submit">Notify me</button>
+          </form>
+          <p class="form-status" id="waitlist-status">No spam — just one email when we launch.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img class="brand__mark" src="/assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="36" height="36">
+            <span class="brand__text">Boat<span class="log">Log</span></span>
+          </a>
+          <p>Simple membership, offline boat sign-out and damage-reporting software for UK rowing clubs.</p>
+        </div>
+        <nav aria-label="Product">
+          <h2>Product</h2>
+          <ul class="footer-links">
+            <li><a href="/boat-sign-out/">Boat sign-out &amp; kiosk</a></li>
+            <li><a href="/safety/">Safety &amp; RAG flags</a></li>
+            <li><a href="/incident-reporting/">Incident reporting</a></li>
+            <li><a href="/damage-reporting/">Damage reporting</a></li>
+            <li><a href="/#waitlist">Join waitlist</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Guides">
+          <h2>Guides</h2>
+          <ul class="footer-links">
+            <li><a href="/guides/">All guides</a></li>
+            <li><a href="/guides/boat-sign-out-system/">Boat sign-out system</a></li>
+            <li><a href="/guides/british-rowing-incident-reporting/">BR incident reporting</a></li>
+            <li><a href="/guides/rag-flags-for-rowing-outings/">RAG flags for outings</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Contact Info</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:info@civildigital.co.uk">info@civildigital.co.uk</a></li>
+            <li><a href="https://wa.me/447568296136">WhatsApp: +44 7568 296136</a></li>
+            <li>Bedford, United Kingdom</li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> BoatLog — a Civil Digital product. All rights reserved.</p>
+        <p>Sign in. Row safe. Log out.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

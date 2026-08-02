@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rowing Safety Software: Incident Logging, RAG Flags &amp; Overdue-Outing Alerts | BoatLog</title>
+  <meta name="description" content="Rowing club safety software: RAG flags for outings, overdue-outing alerts and incident logging, built around British Rowing's safety and reporting expectations.">
+  <link rel="canonical" href="https://boatlog.civildigital.co.uk/safety/">
+  <meta name="theme-color" content="#0B1F3A">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BoatLog">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Rowing Safety Software: Incident Logging, RAG Flags &amp; Overdue-Outing Alerts | BoatLog">
+  <meta property="og:description" content="RAG flags for outings, overdue-outing alerts and incident logging for rowing clubs — safety built in, not bolted on.">
+  <meta property="og:url" content="https://boatlog.civildigital.co.uk/safety/">
+  <meta property="og:image" content="https://boatlog.civildigital.co.uk/images/og-default.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BoatLog — rowing club safety software">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://boatlog.civildigital.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Safety", "item": "https://boatlog.civildigital.co.uk/safety/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://boatlog.civildigital.co.uk/#organization",
+    "name": "Civil Digital",
+    "url": "https://civildigital.co.uk/",
+    "logo": "https://boatlog.civildigital.co.uk/assets/brand/boatlog-mark.png",
+    "email": "info@civildigital.co.uk",
+    "telephone": "+44 7568 296136",
+    "address": { "@type": "PostalAddress", "addressLocality": "Bedford", "addressCountry": "GB" },
+    "sameAs": ["https://civildigital.co.uk/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a RAG flag for a rowing outing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "RAG stands for Red, Amber, Green — a simple traffic-light way of flagging risk that's widely used across safety-conscious sports and workplaces. In BoatLog, an outing or a set of conditions can be flagged Green (normal), Amber (caution — e.g. flow, wind or light) or Red (stand down), so crews and safety advisers can see risk at a glance rather than reading a paragraph of guidance under pressure." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does an overdue-outing alert work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When a boat is signed out, an expected return time is logged alongside it. If the boat hasn't been signed back in by then, BoatLog can flag the outing as overdue so someone on shore knows to check, rather than only noticing hours later that a boat never came back." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does BoatLog replace British Rowing's own safety guidance?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. British Rowing's RowSafe guidance is the authority on club safety practice, and your Club Rowing Safety Adviser is responsible for it. BoatLog is a tool that helps you apply that guidance day to day — logging outings, flagging risk and capturing incidents — it doesn't replace RowSafe or your club's own procedures." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a safety adviser see who's out on the water right now?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — because every outing starts with a boat sign-out, the same record gives a live picture of which boats are out, who's in them, and when they're expected back." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens after an incident is logged in BoatLog?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The details are saved against that outing so they're not lost or rewritten from memory later. From there, your club can use them to complete British Rowing's own incident report — see our incident reporting page for how that process works." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="banner">
+    <strong>Coming soon</strong> &nbsp;&bull;&nbsp; BoatLog is in development for UK rowing clubs — join the waitlist below.
+  </div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="BoatLog home">
+        <img class="brand__mark" src="/assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="40" height="40">
+        <span class="brand__text">Boat<span class="log">Log</span></span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <ul class="nav__links" id="primary-nav">
+        <li><a href="/boat-sign-out/">Boat Sign-Out</a></li>
+        <li><a href="/safety/">Safety</a></li>
+        <li><a href="/incident-reporting/">Incident Reporting</a></li>
+        <li><a href="/damage-reporting/">Damage Reporting</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li class="nav__cta"><a class="btn btn--primary" href="/#waitlist">Join waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="breadcrumb"><a href="/">Home</a> / Safety</p>
+        <h1>Rowing club safety software: incident logging, RAG flags &amp; overdue-outing alerts</h1>
+        <p>Safety-first tools built around how a rowing club actually runs its outings — not a checkbox on a member record.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="prose">
+          <h2>Safety shouldn't be an afterthought</h2>
+          <p>Rowing is a safe sport when clubs treat safety as part of how they run outings, not as paperwork filed away after the fact. British Rowing's <a href="https://www.britishrowing.org/knowledge/club-support/club-governance/club-safety/" target="_blank" rel="noopener">RowSafe guidance</a> puts responsibility for this squarely with clubs and their Rowing Safety Advisers — deciding what conditions are safe to row in, making sure members know what to do if something goes wrong, and reporting incidents so the wider sport can learn from them.</p>
+          <p>BoatLog is built to support that responsibility with three things clubs consistently struggle to keep on top of: knowing whether conditions or a specific outing carry extra risk, knowing when a boat hasn't come back when it should have, and having an accurate record of what happened when an incident does occur.</p>
+
+          <h2>RAG flags: risk at a glance</h2>
+          <p>RAG — Red, Amber, Green — is a traffic-light convention used widely across safety-conscious sports and workplaces to communicate risk quickly, without everyone having to read a full risk assessment under pressure. In BoatLog, outings can be flagged Green for normal conditions, Amber where extra caution is needed (stream, wind, light, a novice crew), or Red where the safety adviser has called it — stand down. The flag travels with the outing record, so it's visible to whoever's signing boats out at the kiosk, not just in a document nobody reads before setting off.</p>
+
+          <h2>Overdue-outing alerts</h2>
+          <p>Every outing on BoatLog starts with a boat sign-out, and every sign-out carries an expected return time. If a boat hasn't been signed back in by then, that outing can be flagged as overdue — so someone on shore knows to start checking, rather than only noticing when the boathouse is being locked up for the night. It's a small thing that closes a real gap: the time between "we don't know" and "we're worried."</p>
+
+          <h2>Incident logging that feeds British Rowing's process</h2>
+          <p>When something does happen — a capsize, a collision, a near miss, an injury — the details matter, and they matter most in the first hour, not the next morning. BoatLog lets a club capture what happened against the outing it relates to: who was involved, which boat, roughly when and where, and what happened next. That record then supports your club's own report through British Rowing's incident reporting system, which asks for online reports within 24 hours of the incident. See our dedicated <a href="/incident-reporting/">incident reporting</a> page for exactly how that process works and how BoatLog fits into it.</p>
+
+          <h2>Safety starts at the boathouse door</h2>
+          <p>None of this works without an accurate sign-out in the first place — see how BoatLog's offline <a href="/boat-sign-out/">boat sign-out &amp; boathouse kiosk</a> captures every outing, even where signal at the water's edge is poor. And if an outing ends with a damaged boat rather than an incident, that's covered by <a href="/damage-reporting/">damage reporting</a>.</p>
+
+          <div class="callout">
+            <strong>BoatLog does not replace your club's own safety procedures or your Rowing Safety Adviser.</strong> It's a tool to help you apply RowSafe guidance day to day. Always follow your club's constitution, risk assessments and your Safety Adviser's decisions.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="faq-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-h">Safety FAQ</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>What is a RAG flag for a rowing outing?</summary>
+            <p>RAG stands for Red, Amber, Green — a simple traffic-light way of flagging risk that's widely used across safety-conscious sports and workplaces. In BoatLog, an outing or set of conditions can be flagged Green (normal), Amber (caution) or Red (stand down), so crews and safety advisers can see risk at a glance.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does an overdue-outing alert work?</summary>
+            <p>When a boat is signed out, an expected return time is logged alongside it. If the boat hasn't been signed back in by then, BoatLog can flag the outing as overdue so someone on shore knows to check.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does BoatLog replace British Rowing's own safety guidance?</summary>
+            <p>No. RowSafe is the authority on club safety practice, and your Club Rowing Safety Adviser is responsible for it. BoatLog helps you apply that guidance day to day — it doesn't replace RowSafe or your club's own procedures.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can a safety adviser see who's out on the water right now?</summary>
+            <p>Yes — because every outing starts with a boat sign-out, the same record gives a live picture of which boats are out, who's in them, and when they're expected back.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens after an incident is logged in BoatLog?</summary>
+            <p>The details are saved against that outing so they're not lost or rewritten from memory later. From there, your club can use them to complete British Rowing's own incident report — see <a href="/incident-reporting/">incident reporting</a>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="related-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Related</p>
+          <h2 id="related-h">More from BoatLog</h2>
+        </div>
+        <div class="link-grid">
+          <a class="link-card" href="/incident-reporting/">
+            <span class="link-card__title">Incident reporting (British Rowing-ready)</span>
+            <span class="link-card__desc">How BoatLog helps you capture what a British Rowing report needs.</span>
+          </a>
+          <a class="link-card" href="/boat-sign-out/">
+            <span class="link-card__title">Boat sign-out &amp; boathouse kiosk</span>
+            <span class="link-card__desc">The offline sign-out that every safety feature is built on.</span>
+          </a>
+          <a class="link-card" href="/guides/rag-flags-for-rowing-outings/">
+            <span class="link-card__title">Guide: RAG flags for rowing outings</span>
+            <span class="link-card__desc">A simple club system for flagging risk before anyone gets on the water.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="waitlist" aria-labelledby="waitlist-h">
+      <div class="container">
+        <div class="cta">
+          <h2 id="waitlist-h">Be first to try BoatLog's safety tools</h2>
+          <p>We're putting the finishing touches on BoatLog. Leave your email and we'll let you know the moment your club can sign up.</p>
+          <form id="waitlist-form" class="cta__form">
+            <label class="visually-hidden" for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@yourclub.org" required>
+            <button class="btn btn--primary" type="submit">Notify me</button>
+          </form>
+          <p class="form-status" id="waitlist-status">No spam — just one email when we launch.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img class="brand__mark" src="/assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="36" height="36">
+            <span class="brand__text">Boat<span class="log">Log</span></span>
+          </a>
+          <p>Simple membership, offline boat sign-out and damage-reporting software for UK rowing clubs.</p>
+        </div>
+        <nav aria-label="Product">
+          <h2>Product</h2>
+          <ul class="footer-links">
+            <li><a href="/boat-sign-out/">Boat sign-out &amp; kiosk</a></li>
+            <li><a href="/safety/">Safety &amp; RAG flags</a></li>
+            <li><a href="/incident-reporting/">Incident reporting</a></li>
+            <li><a href="/damage-reporting/">Damage reporting</a></li>
+            <li><a href="/#waitlist">Join waitlist</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Guides">
+          <h2>Guides</h2>
+          <ul class="footer-links">
+            <li><a href="/guides/">All guides</a></li>
+            <li><a href="/guides/boat-sign-out-system/">Boat sign-out system</a></li>
+            <li><a href="/guides/british-rowing-incident-reporting/">BR incident reporting</a></li>
+            <li><a href="/guides/rag-flags-for-rowing-outings/">RAG flags for outings</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Contact Info</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:info@civildigital.co.uk">info@civildigital.co.uk</a></li>
+            <li><a href="https://wa.me/447568296136">WhatsApp: +44 7568 296136</a></li>
+            <li>Bedford, United Kingdom</li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> BoatLog — a Civil Digital product. All rights reserved.</p>
+        <p>Sign in. Row safe. Log out.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

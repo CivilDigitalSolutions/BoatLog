@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://boatlog.civildigital.co.uk/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://boatlog.civildigital.co.uk/privacy/</loc><lastmod>2026-07-16</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/boat-sign-out/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/safety/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/incident-reporting/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/damage-reporting/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/guides/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/guides/boat-sign-out-system/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/guides/british-rowing-incident-reporting/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/guides/rag-flags-for-rowing-outings/</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://boatlog.civildigital.co.uk/privacy/</loc><lastmod>2026-08-02</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

@@ -274,11 +274,100 @@ h4 { font-size: var(--fs-500); }
   padding: var(--sp-4) var(--sp-5); color: var(--body); margin: var(--sp-6) 0;
 }
 
+/* ---- FAQ (details/summary, no JS needed) -------------------------------- */
+.faq { max-width: var(--maxw-prose); margin: 0 auto; }
+.faq-item {
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-3); background: var(--surface);
+}
+.faq-item summary {
+  cursor: pointer; font-weight: 600; color: var(--navy); list-style: none;
+  display: flex; justify-content: space-between; align-items: center; gap: var(--sp-4);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+"; font-size: 1.4em; line-height: 1; color: var(--teal-dark); flex-shrink: 0;
+}
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item p { margin-top: var(--sp-3); color: var(--body); }
+
+/* ---- Related-links card grid --------------------------------------------- */
+.link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+.link-card {
+  display: block; background: var(--surface-alt); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: var(--sp-5); transition: border-color .15s ease, transform .15s ease;
+}
+.link-card:hover { border-color: var(--teal); transform: translateY(-2px); text-decoration: none; }
+.link-card__title { color: var(--navy); font-weight: 700; display: block; margin-bottom: var(--sp-2); }
+.link-card__desc { color: var(--muted); font-size: var(--fs-300); }
+
+/* ---- Printable template table -------------------------------------------- */
+.template-table { width: 100%; border-collapse: collapse; margin: var(--sp-5) 0; font-size: var(--fs-300); }
+.template-table th, .template-table td {
+  border: 1px solid var(--line); padding: var(--sp-3); text-align: left;
+}
+.template-table th { background: var(--mist); color: var(--navy); }
+.template-actions { margin: var(--sp-4) 0 var(--sp-6); }
+@media print {
+  .site-header, .site-footer, .banner, .page-head, .skip-link, .template-actions, .no-print { display: none !important; }
+  .prose, .template-table { max-width: 100%; }
+}
+
+/* ---- FAQ (native details/summary, no JS needed) ------------------------- */
+.faq { max-width: var(--maxw-prose); margin: 0 auto; display: grid; gap: var(--sp-3); }
+.faq details {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: var(--sp-4) var(--sp-5);
+}
+.faq summary {
+  cursor: pointer; font-weight: 600; color: var(--navy); list-style: none;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; font-size: 1.3em; line-height: 1; color: var(--teal-dark); flex-shrink: 0;
+  transition: transform .15s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin-top: var(--sp-3); color: var(--body); }
+.faq details + details { margin-top: 0; }
+
+/* ---- Related / internal link grid ---------------------------------------- */
+.link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--sp-5); }
+.link-card {
+  display: block; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: var(--sp-5); transition: transform .15s ease, box-shadow .15s ease;
+}
+.link-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); text-decoration: none; }
+.link-card h3 { font-size: var(--fs-500); color: var(--navy); margin-bottom: var(--sp-2); }
+.link-card p { color: var(--muted); font-size: var(--fs-300); margin: 0; }
+
+/* ---- Numbered guide steps ------------------------------------------------- */
+.steps-list {
+  counter-reset: step; list-style: none; padding: 0; display: grid; gap: var(--sp-6);
+  max-width: var(--maxw-prose); margin: 0 auto;
+}
+.steps-list li { position: relative; padding-left: 3.25rem; }
+.steps-list li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%;
+  background: var(--navy); color: #fff; font-weight: 700; font-size: var(--fs-500);
+  display: flex; align-items: center; justify-content: center;
+}
+.steps-list h3 { margin-bottom: var(--sp-2); font-size: var(--fs-500); }
+.steps-list p { color: var(--body); margin: 0; }
+
+/* ---- Simple data table (e.g. printable templates) ------------------------- */
+.table-wrap { overflow-x: auto; margin: var(--sp-5) 0; }
+.data-table { width: 100%; border-collapse: collapse; font-size: var(--fs-300); min-width: 480px; }
+.data-table th, .data-table td { border: 1px solid var(--line); padding: var(--sp-3); text-align: left; }
+.data-table th { background: var(--mist); color: var(--navy); font-weight: 700; }
+
 /* ---- Responsive --------------------------------------------------------- */
 @media (max-width: 860px) {
   .hero .container { grid-template-columns: 1fr; padding-top: var(--sp-7); padding-bottom: var(--sp-7); }
   .hero__art { order: -1; }
-  .features, .steps { grid-template-columns: 1fr; }
+  .features, .steps, .link-grid { grid-template-columns: 1fr; }
 
   .nav__toggle { display: inline-flex; }
   .nav__links {

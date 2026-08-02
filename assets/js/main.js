@@ -26,6 +26,15 @@
     });
   }
 
+  /* Print trigger (e.g. printable templates). Progressive enhancement:
+     buttons carry a real page anchor as href fallback if JS is off. */
+  document.querySelectorAll("[data-print]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.print();
+    });
+  });
+
   /* Waitlist form.
      Placeholder handler for the pre-launch site: there is no backend yet,
      so we acknowledge the sign-up client-side. Wire data-endpoint to a real

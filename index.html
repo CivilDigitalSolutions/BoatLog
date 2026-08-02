@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BoatLog | Membership, bookings &amp; damage reporting for rowing clubs</title>
-  <meta name="description" content="BoatLog helps rowing clubs manage memberships, boat bookings and damage reporting in one simple place. Sign in. Row safe. Log out.">
+  <title>Rowing Club Software: Boat Sign-Out, Safety &amp; Damage Reporting | BoatLog</title>
+  <meta name="description" content="BoatLog is UK rowing club software for offline boat sign-out, safety-first RAG flags and damage reporting. Built for British Rowing clubs. Join the waitlist.">
   <link rel="canonical" href="https://boatlog.civildigital.co.uk/">
   <meta name="theme-color" content="#0B1F3A">
 
@@ -12,8 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BoatLog">
   <meta property="og:locale" content="en_GB">
-  <meta property="og:title" content="BoatLog — simple management for rowing clubs">
-  <meta property="og:description" content="Memberships, boat bookings and damage reporting in one simple place. Sign in. Row safe. Log out.">
+  <meta property="og:title" content="BoatLog — rowing club software for boat sign-out, safety &amp; damage reporting">
+  <meta property="og:description" content="Offline boathouse kiosk sign-out, RAG flags, overdue-outing alerts and damage reporting for UK rowing clubs. Sign in. Row safe. Log out.">
   <meta property="og:url" content="https://boatlog.civildigital.co.uk/">
   <meta property="og:image" content="https://boatlog.civildigital.co.uk/images/og-default.png">
   <meta property="og:image:type" content="image/png">
@@ -34,16 +34,9 @@
     "url": "https://boatlog.civildigital.co.uk/",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "description": "BoatLog helps rowing clubs manage memberships, boat bookings and damage reporting in one simple place.",
+    "description": "BoatLog helps rowing clubs manage memberships, offline boathouse boat sign-out, safety (RAG flags, overdue-outing alerts, incident logging) and damage reporting in one simple place.",
     "slogan": "Sign in. Row safe. Log out.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Civil Digital",
-      "url": "https://civildigital.co.uk/",
-      "email": "info@civildigital.co.uk",
-      "telephone": "+44 7568 296136",
-      "address": { "@type": "PostalAddress", "addressLocality": "Bedford", "addressCountry": "GB" }
-    }
+    "publisher": { "@id": "https://boatlog.civildigital.co.uk/#organization" }
   }
   </script>
   <script type="application/ld+json">
@@ -53,7 +46,50 @@
     "@id": "https://boatlog.civildigital.co.uk/#website",
     "name": "BoatLog",
     "url": "https://boatlog.civildigital.co.uk/",
-    "inLanguage": "en-GB"
+    "inLanguage": "en-GB",
+    "publisher": { "@id": "https://boatlog.civildigital.co.uk/#organization" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://boatlog.civildigital.co.uk/#organization",
+    "name": "Civil Digital",
+    "url": "https://civildigital.co.uk/",
+    "logo": "https://boatlog.civildigital.co.uk/assets/brand/boatlog-mark.png",
+    "email": "info@civildigital.co.uk",
+    "telephone": "+44 7568 296136",
+    "address": { "@type": "PostalAddress", "addressLocality": "Bedford", "addressCountry": "GB" },
+    "sameAs": ["https://civildigital.co.uk/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is BoatLog available yet?",
+        "acceptedAnswer": { "@type": "Answer", "text": "BoatLog is in development. You can join the waitlist to be notified as soon as your club can sign up, and to help shape the features that ship first." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does BoatLog work without WiFi at the boathouse?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — the boat sign-out kiosk is designed to work offline. Boathouses are notorious for poor signal, so sign-ins and sign-outs are captured on the device and sync automatically once it's back online." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does BoatLog cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We haven't published pricing yet, but the plan is simple, honest pricing with no demo-gating. Join the waitlist or get in touch and we'll talk you through it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is BoatLog an official British Rowing product?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. BoatLog is an independent product built by Civil Digital. It is not affiliated with or endorsed by British Rowing, but it is built around UK rowing clubs' real safety and compliance needs, including British Rowing's incident reporting process." }
+      }
+    ]
   }
   </script>
 </head>
@@ -62,7 +98,7 @@
 
   <!-- Coming soon banner -->
   <div class="banner">
-    <strong>Coming soon</strong> &nbsp;&bull;&nbsp; BoatLog is being built for rowing clubs — join the waitlist below.
+    <strong>Coming soon</strong> &nbsp;&bull;&nbsp; BoatLog is in development for UK rowing clubs — join the waitlist below.
   </div>
 
   <header class="site-header">
@@ -76,8 +112,11 @@
         <span class="visually-hidden">Menu</span>
       </button>
       <ul class="nav__links" id="primary-nav">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how">How it works</a></li>
+        <li><a href="/boat-sign-out/">Boat Sign-Out</a></li>
+        <li><a href="/safety/">Safety</a></li>
+        <li><a href="/incident-reporting/">Incident Reporting</a></li>
+        <li><a href="/damage-reporting/">Damage Reporting</a></li>
+        <li><a href="/guides/">Guides</a></li>
         <li class="nav__cta"><a class="btn btn--primary" href="#waitlist">Join waitlist</a></li>
       </ul>
     </div>
@@ -89,9 +128,9 @@
     <section class="hero">
       <div class="container">
         <div class="hero__copy">
-          <span class="eyebrow">For rowing clubs</span>
-          <h1>Run your rowing club <span class="accent">without the paperwork</span>.</h1>
-          <p class="hero__lead">Memberships, boat bookings and damage reports — all in one simple, tidy place your whole club can trust.</p>
+          <span class="eyebrow">Rowing club software for UK clubs</span>
+          <h1>Rowing club software, <span class="accent">without the paperwork</span>.</h1>
+          <p class="hero__lead">Offline boathouse sign-out, safety-first RAG flags and damage reporting — all in one simple, tidy place your whole club can trust.</p>
           <div class="hero__actions">
             <a class="btn btn--primary btn--lg" href="#waitlist">Join the waitlist</a>
             <a class="btn btn--ghost btn--lg" href="#features">See what's coming</a>
@@ -188,6 +227,71 @@
       </div>
     </section>
 
+    <!-- Explore in depth -->
+    <section class="section section--tint" aria-labelledby="explore-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Explore BoatLog</p>
+          <h2 id="explore-h">Go deeper on how BoatLog helps your club</h2>
+          <p>Each part of BoatLog is built around a real job at the boathouse — see how it works.</p>
+        </div>
+        <div class="link-grid">
+          <a class="link-card" href="/boat-sign-out/">
+            <span class="link-card__title">Boat sign-out &amp; boathouse kiosk</span>
+            <span class="link-card__desc">Replace the paper sign-out book or whiteboard with an offline kiosk at the boathouse door.</span>
+          </a>
+          <a class="link-card" href="/safety/">
+            <span class="link-card__title">Safety, RAG flags &amp; overdue-outing alerts</span>
+            <span class="link-card__desc">Flag risky conditions, spot an outing that hasn't come back, and log incidents as they happen.</span>
+          </a>
+          <a class="link-card" href="/incident-reporting/">
+            <span class="link-card__title">Incident reporting (British Rowing-ready)</span>
+            <span class="link-card__desc">Capture what British Rowing's incident report needs, at the time it happens.</span>
+          </a>
+          <a class="link-card" href="/damage-reporting/">
+            <span class="link-card__title">Damage reporting &amp; out-of-service tracking</span>
+            <span class="link-card__desc">Log damage in the moment, flag a boat out of service, and track repairs to completion.</span>
+          </a>
+          <a class="link-card" href="/guides/boat-sign-out-system/">
+            <span class="link-card__title">Guide: run a boat sign-out system</span>
+            <span class="link-card__desc">A free template and a step-by-step guide to setting one up, whether you go digital or paper first.</span>
+          </a>
+          <a class="link-card" href="/guides/british-rowing-incident-reporting/">
+            <span class="link-card__title">Guide: British Rowing incident reporting</span>
+            <span class="link-card__desc">A club's step-by-step guide to reporting an incident correctly and on time.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-h">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-h">Frequently asked questions</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>Is BoatLog available yet?</summary>
+            <p>BoatLog is in development. Join the waitlist to be notified as soon as your club can sign up, and to help shape the features that ship first.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does BoatLog work without WiFi at the boathouse?</summary>
+            <p>Yes. The boat sign-out kiosk is designed to work offline — sign-ins and sign-outs are captured on the device and sync automatically once it's back online. See <a href="/boat-sign-out/">boat sign-out &amp; kiosk</a>.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does BoatLog cost?</summary>
+            <p>We haven't published pricing yet, but the plan is simple, honest pricing with no demo-gating. Join the waitlist or <a href="mailto:info@civildigital.co.uk">get in touch</a> and we'll talk you through it.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is BoatLog an official British Rowing product?</summary>
+            <p>No. BoatLog is an independent product built by Civil Digital and is not affiliated with or endorsed by British Rowing. It's built around UK clubs' real safety and compliance needs, including British Rowing's own incident reporting process — see <a href="/incident-reporting/">incident reporting</a>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA / waitlist -->
     <section class="section" id="waitlist" aria-labelledby="waitlist-h">
       <div class="container">
@@ -214,14 +318,25 @@
             <img class="brand__mark" src="assets/brand/boatlog-mark.png" alt="" aria-hidden="true" width="36" height="36">
             <span class="brand__text">Boat<span class="log">Log</span></span>
           </a>
-          <p>Simple membership, booking and damage-reporting software for rowing clubs.</p>
+          <p>Simple membership, offline boat sign-out and damage-reporting software for UK rowing clubs.</p>
         </div>
         <nav aria-label="Product">
           <h2>Product</h2>
           <ul class="footer-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how">How it works</a></li>
+            <li><a href="/boat-sign-out/">Boat sign-out &amp; kiosk</a></li>
+            <li><a href="/safety/">Safety &amp; RAG flags</a></li>
+            <li><a href="/incident-reporting/">Incident reporting</a></li>
+            <li><a href="/damage-reporting/">Damage reporting</a></li>
             <li><a href="#waitlist">Join waitlist</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Guides">
+          <h2>Guides</h2>
+          <ul class="footer-links">
+            <li><a href="/guides/">All guides</a></li>
+            <li><a href="/guides/boat-sign-out-system/">Boat sign-out system</a></li>
+            <li><a href="/guides/british-rowing-incident-reporting/">BR incident reporting</a></li>
+            <li><a href="/guides/rag-flags-for-rowing-outings/">RAG flags for outings</a></li>
           </ul>
         </nav>
         <div>
