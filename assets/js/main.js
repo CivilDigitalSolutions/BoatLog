@@ -34,21 +34,4 @@
       window.print();
     });
   });
-
-  /* Waitlist form.
-     Placeholder handler for the pre-launch site: there is no backend yet,
-     so we acknowledge the sign-up client-side. Wire data-endpoint to a real
-     form service (or collect via mailto) before launch. */
-  var form = document.getElementById("waitlist-form");
-  if (form) {
-    var statusEl = document.getElementById("waitlist-status");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (statusEl) {
-        statusEl.className = "form-status is-success";
-        statusEl.textContent = "Thanks! You're on the list — we'll be in touch soon.";
-      }
-      form.reset();
-    });
-  }
 })();
