@@ -1,0 +1,972 @@
+<title>BROE2 Import Review</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+/* ==========================================================================
+   BoatLog - BROE2 Import Review (proof of concept)
+   Extends the BoatLog design system (assets/css/styles.css) into app density.
+   Inherited: navy, teal, mist, system font stack, no webfonts, token-driven.
+   Added here: semantic state tokens for diff categories, deliberately kept
+   separate from the teal accent so "needs attention" never competes with
+   "this is the action".
+   ========================================================================== */
+
+:root {
+  --navy:        #0B1F3A;
+  --teal:        #2EC4B6;
+  --teal-dark:   #1a8f85;
+
+  --ground:      #eef3f7;
+  --surface:     #ffffff;
+  --surface-alt: #f5f8fb;
+  --surface-sunk:#e7eef4;
+  --line:        #dbe4ec;
+  --line-strong: #c3d1de;
+  --ink:         #0B1F3A;
+  --body:        #33465a;
+  --muted:       #5b6b7d;
+  --faint:       #7f93a6;
+
+  --chrome:      #0B1F3A;
+  --chrome-ink:  #ffffff;
+  --chrome-dim:  #9fb2c6;
+  --chrome-line: rgba(255,255,255,.14);
+
+  --new-fg:  #0f6b60; --new-bg:  #ddf3ef; --new-edge: #93d9cf;
+  --warn-fg: #8a4b06; --warn-bg: #fdf0dc; --warn-edge:#eec48a;
+  --stop-fg: #9d1f1f; --stop-bg: #fbe6e6; --stop-edge:#eaa9a9;
+  --move-fg: #33418f; --move-bg: #e6e9fa; --move-edge:#b3bce9;
+  --calm-fg: #5b6b7d; --calm-bg: #eaeff4; --calm-edge:#d3dde6;
+
+  --fs-100:.6875rem; --fs-200:.75rem;  --fs-300:.8125rem;
+  --fs-400:.9375rem; --fs-500:1.0625rem; --fs-600:1.3125rem; --fs-700:1.75rem;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem;
+  --sp-5:1.5rem; --sp-6:2rem; --sp-7:3rem;
+
+  --radius:14px; --radius-sm:8px; --radius-pill:999px;
+  --shadow: 0 1px 2px rgba(11,31,58,.06), 0 6px 20px rgba(11,31,58,.08);
+  --shadow-lg: 0 18px 48px rgba(11,31,58,.16);
+  --maxw:1240px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:      #05111e;
+    --surface:     #0d2033;
+    --surface-alt: #112940;
+    --surface-sunk:#091a2a;
+    --line:        #1d3a55;
+    --line-strong: #2a4d6b;
+    --ink:         #eef5fb;
+    --body:        #c2d3e2;
+    --muted:       #94a9be;
+    --faint:       #708aa0;
+
+    --chrome:      #071726;
+    --chrome-ink:  #ffffff;
+    --chrome-dim:  #8aa0b6;
+    --chrome-line: rgba(255,255,255,.10);
+    --teal-dark:   #3fd8c9;
+
+    --new-fg:  #7fe0d1; --new-bg:  #0d3b36; --new-edge: #1d5d55;
+    --warn-fg: #f0c07a; --warn-bg: #3b2b11; --warn-edge:#6b4e1c;
+    --stop-fg: #f3a3a3; --stop-bg: #3f1c1c; --stop-edge:#6d2e2e;
+    --move-fg: #aeb8f0; --move-bg: #1e2550; --move-edge:#3b4585;
+    --calm-fg: #a0b3c5; --calm-bg: #14283c; --calm-edge:#23405c;
+
+    --shadow:    0 1px 2px rgba(0,0,0,.45), 0 6px 20px rgba(0,0,0,.35);
+    --shadow-lg: 0 18px 48px rgba(0,0,0,.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:      #05111e;
+  --surface:     #0d2033;
+  --surface-alt: #112940;
+  --surface-sunk:#091a2a;
+  --line:        #1d3a55;
+  --line-strong: #2a4d6b;
+  --ink:         #eef5fb;
+  --body:        #c2d3e2;
+  --muted:       #94a9be;
+  --faint:       #708aa0;
+
+  --chrome:      #071726;
+  --chrome-ink:  #ffffff;
+  --chrome-dim:  #8aa0b6;
+  --chrome-line: rgba(255,255,255,.10);
+  --teal-dark:   #3fd8c9;
+
+  --new-fg:  #7fe0d1; --new-bg:  #0d3b36; --new-edge: #1d5d55;
+  --warn-fg: #f0c07a; --warn-bg: #3b2b11; --warn-edge:#6b4e1c;
+  --stop-fg: #f3a3a3; --stop-bg: #3f1c1c; --stop-edge:#6d2e2e;
+  --move-fg: #aeb8f0; --move-bg: #1e2550; --move-edge:#3b4585;
+  --calm-fg: #a0b3c5; --calm-bg: #14283c; --calm-edge:#23405c;
+
+  --shadow:    0 1px 2px rgba(0,0,0,.45), 0 6px 20px rgba(0,0,0,.35);
+  --shadow-lg: 0 18px 48px rgba(0,0,0,.5);
+}
+
+/* ---- Base -------------------------------------------------------------- */
+*,*::before,*::after { box-sizing:border-box; }
+* { margin:0; }
+body {
+  font-family:var(--font); font-size:var(--fs-400); line-height:1.55;
+  color:var(--body); background:var(--ground);
+  -webkit-font-smoothing:antialiased; padding-bottom:5.5rem;
+}
+h1,h2,h3 { color:var(--ink); line-height:1.25; font-weight:700; letter-spacing:-.01em; }
+button { font:inherit; color:inherit; cursor:pointer; }
+:focus-visible { outline:2px solid var(--teal-dark); outline-offset:2px; border-radius:4px; }
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+.num { font-variant-numeric:tabular-nums; }
+.wrap { width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--sp-5); }
+.vh { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+/* ---- App bar ------------------------------------------------------------ */
+.appbar { background:var(--chrome); color:var(--chrome-ink); border-bottom:1px solid var(--chrome-line); }
+.appbar__in { display:flex; align-items:center; gap:var(--sp-5); height:60px; }
+.brand { display:flex; align-items:center; gap:var(--sp-2); font-weight:700; font-size:var(--fs-500); letter-spacing:-.02em; }
+.brand .log { color:var(--teal); }
+.brand__mark {
+  width:26px; height:26px; border-radius:7px; background:var(--teal);
+  display:grid; place-items:center; color:var(--navy); font-size:var(--fs-200); font-weight:800;
+}
+.appbar__ctx { margin-left:auto; display:flex; align-items:center; gap:var(--sp-4); font-size:var(--fs-300); color:var(--chrome-dim); }
+.appbar__ctx strong { color:var(--chrome-ink); font-weight:600; }
+.mode {
+  border:1px solid var(--chrome-line); background:transparent; color:var(--chrome-dim);
+  border-radius:var(--radius-pill); padding:.3rem .7rem; font-size:var(--fs-200); font-weight:600;
+}
+.mode:hover { color:#fff; border-color:rgba(255,255,255,.35); }
+
+/* ---- Page head ---------------------------------------------------------- */
+.head { padding:var(--sp-6) 0 var(--sp-5); }
+.crumb { font-size:var(--fs-200); color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-weight:700; }
+.head h1 { font-size:var(--fs-700); margin-top:var(--sp-2); }
+.head__sub { color:var(--muted); font-size:var(--fs-400); margin-top:var(--sp-2); max-width:62ch; }
+.srcline {
+  display:flex; flex-wrap:wrap; gap:var(--sp-2) var(--sp-4); margin-top:var(--sp-4);
+  font-size:var(--fs-200); color:var(--faint); align-items:center;
+}
+.srcline code { font-family:var(--mono); font-size:var(--fs-200); color:var(--body); }
+
+/* ---- Cards -------------------------------------------------------------- */
+.card {
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); box-shadow:var(--shadow);
+}
+.card__hd {
+  display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap;
+  padding:var(--sp-4) var(--sp-5); border-bottom:1px solid var(--line);
+}
+.card__hd h2 { font-size:var(--fs-400); letter-spacing:0; }
+.card__hd .hint { margin-left:auto; font-size:var(--fs-200); color:var(--faint); }
+
+/* ---- Banding impact ----------------------------------------------------- */
+.impact {
+  background:var(--warn-bg); border:1px solid var(--warn-edge);
+  border-radius:var(--radius); padding:var(--sp-5);
+  display:grid; grid-template-columns:auto 1fr auto; gap:var(--sp-5); align-items:center;
+}
+.impact .impact__n { font-size:2.6rem; font-weight:800; color:var(--warn-fg); line-height:1; margin:0; }
+.impact h2 { font-size:var(--fs-500); color:var(--warn-fg); }
+.impact p { font-size:var(--fs-300); color:var(--warn-fg); opacity:.92; margin-top:var(--sp-1); max-width:70ch; }
+.impact__act {
+  background:var(--warn-fg); color:var(--warn-bg); border:0; border-radius:var(--radius-pill);
+  padding:.55rem 1.1rem; font-size:var(--fs-300); font-weight:700; white-space:nowrap;
+}
+.impact__act:hover { filter:brightness(1.12); }
+
+/* ---- Stat filters ------------------------------------------------------- */
+.stats { display:grid; grid-template-columns:repeat(6,1fr); gap:var(--sp-3); }
+.stat {
+  text-align:left; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius-sm); padding:var(--sp-4); display:grid; gap:var(--sp-1);
+  transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  border-top:3px solid var(--calm-edge);
+}
+.stat:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
+.stat[aria-pressed="true"] { border-color:var(--line-strong); box-shadow:var(--shadow); background:var(--surface-alt); }
+.stat__n { font-size:var(--fs-600); font-weight:800; color:var(--ink); }
+.stat__l { font-size:var(--fs-200); color:var(--muted); font-weight:600; line-height:1.3; }
+.stat__flag { font-size:var(--fs-100); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--warn-fg); }
+.stat--new  { border-top-color:var(--new-edge); }
+.stat--sub  { border-top-color:var(--warn-edge); }
+.stat--cri  { border-top-color:var(--warn-edge); }
+.stat--move { border-top-color:var(--move-edge); }
+.stat--out  { border-top-color:var(--stop-edge); }
+.stat--same { border-top-color:var(--calm-edge); }
+
+/* ---- Pills -------------------------------------------------------------- */
+.pill {
+  display:inline-flex; align-items:center; gap:.35rem; border-radius:var(--radius-pill);
+  padding:.16rem .6rem; font-size:var(--fs-100); font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; white-space:nowrap; border:1px solid transparent;
+}
+.pill--new  { background:var(--new-bg);  color:var(--new-fg);  border-color:var(--new-edge); }
+.pill--sub  { background:var(--warn-bg); color:var(--warn-fg); border-color:var(--warn-edge); }
+.pill--cri  { background:var(--warn-bg); color:var(--warn-fg); border-color:var(--warn-edge); }
+.pill--move { background:var(--move-bg); color:var(--move-fg); border-color:var(--move-edge); }
+.pill--out  { background:var(--stop-bg); color:var(--stop-fg); border-color:var(--stop-edge); }
+.pill--same { background:var(--calm-bg); color:var(--calm-fg); border-color:var(--calm-edge); }
+
+/* ---- Crew rows ---------------------------------------------------------- */
+.rows { display:block; }
+.row { border-bottom:1px solid var(--line); }
+.row:last-child { border-bottom:0; }
+.row__btn {
+  width:100%; display:grid; align-items:center; gap:var(--sp-4);
+  grid-template-columns: 6.5rem 1fr 9rem 7rem 7.5rem 1.6rem;
+  padding:var(--sp-3) var(--sp-5); background:transparent; border:0; text-align:left;
+  border-left:3px solid transparent; transition:background .12s ease;
+}
+.row__btn:hover { background:var(--surface-alt); }
+.row[data-cat="sub"]  .row__btn,
+.row[data-cat="cri"]  .row__btn { border-left-color:var(--warn-edge); }
+.row[data-cat="new"]  .row__btn { border-left-color:var(--new-edge); }
+.row[data-cat="move"] .row__btn { border-left-color:var(--move-edge); }
+.row[data-cat="out"]  .row__btn { border-left-color:var(--stop-edge); }
+
+.cid { font-family:var(--mono); font-size:var(--fs-200); color:var(--faint); }
+.crew__name { display:block; font-weight:650; color:var(--ink); font-size:var(--fs-400); }
+.crew__meta { display:block; font-size:var(--fs-200); color:var(--muted); margin-top:.1rem; }
+.ev { font-size:var(--fs-300); color:var(--body); }
+.ev__id { display:block; font-family:var(--mono); font-size:var(--fs-100); color:var(--faint); margin-top:.1rem; }
+.cri {
+  font-size:var(--fs-300); font-variant-numeric:tabular-nums; color:var(--body);
+  display:flex; align-items:baseline; gap:.35rem;
+}
+.cri__d { font-size:var(--fs-200); font-weight:700; }
+.cri__d--up   { color:var(--warn-fg); }
+.cri__d--flat { color:var(--faint); font-weight:500; }
+.chev { color:var(--faint); font-size:var(--fs-300); transition:transform .18s ease; justify-self:end; }
+.row.is-open .chev { transform:rotate(90deg); }
+.row.is-open .row__btn { background:var(--surface-alt); }
+
+/* ---- Row detail --------------------------------------------------------- */
+.detail { display:none; padding:0 var(--sp-5) var(--sp-5) calc(var(--sp-5) + 3px); background:var(--surface-alt); }
+.row.is-open .detail { display:block; }
+.detail__grid { display:grid; grid-template-columns:1.35fr 1fr; gap:var(--sp-4); align-items:start; }
+.box { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm); padding:var(--sp-4); }
+.box h3 {
+  font-size:var(--fs-100); text-transform:uppercase; letter-spacing:.1em;
+  color:var(--faint); font-weight:700; margin-bottom:var(--sp-3);
+}
+.box--warn { border-color:var(--warn-edge); background:var(--warn-bg); }
+.box--warn h3 { color:var(--warn-fg); }
+.box--warn .kv__v, .box--warn .note { color:var(--warn-fg); }
+.box--keep { border-color:var(--new-edge); background:var(--new-bg); }
+.box--keep h3 { color:var(--new-fg); }
+.box--keep .kv__v { color:var(--new-fg); }
+
+.seats { display:grid; gap:var(--sp-2); }
+.seat {
+  display:grid; grid-template-columns:3.2rem 1fr auto; gap:var(--sp-3); align-items:center;
+  font-size:var(--fs-300); padding:.3rem .5rem; border-radius:6px;
+}
+.seat__n { font-size:var(--fs-200); font-weight:700; color:var(--faint); text-transform:uppercase; letter-spacing:.06em; }
+.seat__pri { font-family:var(--mono); font-size:var(--fs-200); color:var(--muted); font-variant-numeric:tabular-nums; }
+.seat--out { background:var(--stop-bg); color:var(--stop-fg); }
+.seat--out .seat__n, .seat--out .seat__pri { color:var(--stop-fg); opacity:.85; }
+.seat--out .seat__name { text-decoration:line-through; }
+.seat--in  { background:var(--new-bg); color:var(--new-fg); }
+.seat--in .seat__n, .seat--in .seat__pri { color:var(--new-fg); opacity:.85; }
+.seat__tag { font-size:var(--fs-100); font-weight:700; text-transform:uppercase; letter-spacing:.07em; }
+
+.kv { display:grid; grid-template-columns:auto 1fr; gap:var(--sp-2) var(--sp-4); font-size:var(--fs-300); }
+.kv__k { color:var(--faint); }
+.kv__v { color:var(--body); font-variant-numeric:tabular-nums; }
+.note { font-size:var(--fs-200); color:var(--muted); margin-top:var(--sp-3); line-height:1.5; }
+.ref { font-family:var(--mono); font-size:var(--fs-100); color:var(--faint); }
+
+/* ---- Manifest & notices ------------------------------------------------- */
+.manifest { display:flex; flex-wrap:wrap; gap:var(--sp-2); padding:var(--sp-4) var(--sp-5); }
+.fchip {
+  display:inline-flex; align-items:center; gap:.4rem; font-size:var(--fs-200);
+  border:1px solid var(--line); border-radius:var(--radius-pill); padding:.2rem .65rem; color:var(--body);
+}
+.fchip--miss { color:var(--faint); border-style:dashed; }
+.fchip--up { border-color:var(--new-edge); background:var(--new-bg); color:var(--new-fg); font-weight:600; }
+.dot { width:6px; height:6px; border-radius:50%; background:var(--teal-dark); flex:none; }
+.fchip--miss .dot { background:var(--line-strong); }
+.fchip--up .dot { background:var(--new-fg); }
+
+.notices { display:grid; }
+.notice { display:grid; grid-template-columns:auto 1fr auto; gap:var(--sp-3); align-items:start;
+  padding:var(--sp-3) var(--sp-5); border-bottom:1px solid var(--line); font-size:var(--fs-300); }
+.notice:last-child { border-bottom:0; }
+.notice__ico { font-weight:800; font-size:var(--fs-300); line-height:1.5; }
+.notice--ok   .notice__ico { color:var(--new-fg); }
+.notice--warn .notice__ico { color:var(--warn-fg); }
+.notice strong { color:var(--ink); font-weight:650; }
+.notice p { color:var(--muted); font-size:var(--fs-200); margin-top:.1rem; }
+
+/* ---- Commit bar --------------------------------------------------------- */
+.commit {
+  position:fixed; left:0; right:0; bottom:0; z-index:30;
+  background:var(--surface); border-top:1px solid var(--line-strong);
+  box-shadow:0 -8px 30px rgba(11,31,58,.10);
+}
+.commit__in { display:flex; align-items:center; gap:var(--sp-5); padding:var(--sp-3) 0; flex-wrap:wrap; }
+.commit__sum { font-size:var(--fs-300); color:var(--muted); }
+.commit__sum strong { color:var(--ink); }
+.commit__act { margin-left:auto; display:flex; align-items:center; gap:var(--sp-3); }
+.btn {
+  border-radius:var(--radius-pill); padding:.6rem 1.3rem; font-weight:700;
+  font-size:var(--fs-300); border:2px solid transparent; transition:background .15s ease, color .15s ease;
+}
+.btn--primary { background:var(--teal); color:var(--navy); }
+.btn--primary:hover { background:var(--teal-dark); color:#fff; }
+.btn--ghost { background:transparent; color:var(--body); border-color:var(--line-strong); }
+.btn--ghost:hover { border-color:var(--teal-dark); color:var(--teal-dark); }
+
+.sw { display:flex; align-items:center; gap:var(--sp-3); cursor:pointer; }
+.sw input { position:absolute; opacity:0; width:0; height:0; }
+.sw__track {
+  width:38px; height:22px; border-radius:var(--radius-pill); background:var(--line-strong);
+  position:relative; transition:background .15s ease; flex:none;
+}
+.sw__track::after {
+  content:""; position:absolute; top:3px; left:3px; width:16px; height:16px;
+  border-radius:50%; background:#fff; transition:transform .15s ease; box-shadow:0 1px 3px rgba(0,0,0,.3);
+}
+.sw input:checked + .sw__track { background:var(--teal-dark); }
+.sw input:checked + .sw__track::after { transform:translateX(16px); }
+.sw input:focus-visible + .sw__track { outline:2px solid var(--teal-dark); outline-offset:2px; }
+.sw__lb { font-size:var(--fs-300); color:var(--body); }
+.sw__lb small { display:block; font-size:var(--fs-100); color:var(--faint); }
+
+/* ---- Layout rhythm ------------------------------------------------------ */
+.stack { display:grid; gap:var(--sp-5); padding-bottom:var(--sp-6); }
+
+@media (max-width: 1080px) {
+  .stats { grid-template-columns:repeat(3,1fr); }
+  .row__btn { grid-template-columns:1fr 8rem 1.6rem; row-gap:var(--sp-2); }
+  .row__btn .cid, .row__btn .cri { grid-column:1 / -1; }
+  .detail__grid { grid-template-columns:1fr; }
+}
+@media (max-width: 720px) {
+  .stats { grid-template-columns:repeat(2,1fr); }
+  .impact { grid-template-columns:auto 1fr; }
+  .impact__act { grid-column:1 / -1; justify-self:start; }
+  .appbar__ctx .ctx-hide { display:none; }
+  .row__btn { grid-template-columns:1fr 1.6rem; }
+  .row__btn .ev { grid-column:1 / -1; }
+  .commit__act { margin-left:0; width:100%; }
+}
+</style>
+
+<header class="appbar">
+  <div class="wrap appbar__in">
+    <span class="brand">
+      <span class="brand__mark" aria-hidden="true">BL</span>
+      Boat<span class="log">Log</span>
+    </span>
+    <div class="appbar__ctx">
+      <span class="ctx-hide">Organiser &middot; Bedford Rowing Club</span>
+      <span><strong>Bedford Autumn Head 2026</strong> &middot; 12 Oct</span>
+      <button class="mode" id="themeBtn" type="button">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <p class="crumb">Competitions &rsaquo; Bedford Autumn Head 2026 &rsaquo; Import</p>
+    <h1>Review changes before committing</h1>
+    <p class="head__sub">
+      This is the fourth export you have imported for this competition. BoatLog has compared it
+      against what is already here and will only write the differences &mdash; nothing you have
+      done inside BoatLog is overwritten.
+    </p>
+    <p class="srcline">
+      <code>BAH2026-export-20261008-1642.zip</code>
+      <span>2.4 MB</span>
+      <span>SHA-256 <code>4f2a&hellip;9c1e</code></span>
+      <span>Format V8</span>
+      <span>Previous import 3 Oct, 19:12</span>
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <section class="impact" id="impactBanner">
+      <p class="impact__n num">7</p>
+      <div>
+        <h2>Seven crews changed in ways that affect banding</h2>
+        <p>
+          Four crews have a different lineup and three have a crew ranking index that has moved
+          away from its baseline. Bands and groups you assigned for these crews were calculated
+          from the old numbers. Everything else can be committed without review.
+        </p>
+      </div>
+      <button class="impact__act" type="button" id="impactBtn">Show only these 7</button>
+    </section>
+
+    <div class="stats" role="group" aria-label="Filter crews by what changed">
+      <button class="stat stat--new"  type="button" data-filter="new"  aria-pressed="false">
+        <span class="stat__n num">6</span><span class="stat__l">New crews</span>
+      </button>
+      <button class="stat stat--sub"  type="button" data-filter="sub"  aria-pressed="false">
+        <span class="stat__n num">4</span><span class="stat__l">Substituted</span>
+        <span class="stat__flag">Affects banding</span>
+      </button>
+      <button class="stat stat--cri"  type="button" data-filter="cri"  aria-pressed="false">
+        <span class="stat__n num">3</span><span class="stat__l">CRI drift</span>
+        <span class="stat__flag">Affects banding</span>
+      </button>
+      <button class="stat stat--move" type="button" data-filter="move" aria-pressed="false">
+        <span class="stat__n num">2</span><span class="stat__l">Moved event</span>
+      </button>
+      <button class="stat stat--out"  type="button" data-filter="out"  aria-pressed="false">
+        <span class="stat__n num">5</span><span class="stat__l">Withdrawn, scratched or rejected</span>
+      </button>
+      <button class="stat stat--same" type="button" data-filter="same" aria-pressed="false">
+        <span class="stat__n num">118</span><span class="stat__l">Unchanged</span>
+      </button>
+    </div>
+
+    <section class="card">
+      <div class="card__hd">
+        <h2 id="listTitle">Changed crews</h2>
+        <span class="pill pill--same" id="listCount">20 shown</span>
+        <span class="hint">Select a crew to see what moved</span>
+      </div>
+      <div class="rows" id="rows"></div>
+    </section>
+
+    <section class="card">
+      <div class="card__hd">
+        <h2>Files found in this export</h2>
+        <span class="hint">11 of 13 known files &middot; unrecognised files are logged and skipped, never fatal</span>
+      </div>
+      <div class="manifest" id="manifest"></div>
+    </section>
+
+    <section class="card">
+      <div class="card__hd">
+        <h2>Checks</h2>
+        <span class="hint">Nothing here blocks the import</span>
+      </div>
+      <div class="notices" id="notices"></div>
+    </section>
+
+  </div>
+</main>
+
+<div class="commit">
+  <div class="wrap commit__in">
+    <p class="commit__sum">
+      Committing writes <strong class="num" id="writeCount">20 changes</strong> across
+      <strong class="num">138</strong> crews. Crew numbers, boating times and marshalling stay as they are.
+    </p>
+    <div class="commit__act">
+      <label class="sw">
+        <input type="checkbox" id="piiToggle">
+        <span class="sw__track"></span>
+        <span class="sw__lb">Keep contact details
+          <small id="piiHint">Off: 8 phone and 4 email fields per crew are discarded at ingest</small>
+        </span>
+      </label>
+      <button class="btn btn--ghost" type="button">Cancel</button>
+      <button class="btn btn--primary" type="button" id="commitBtn">Commit import</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Proof of concept. Mock data shaped to the BROE2 V8 export, per the
+   BoatLog BROE2 Competition Module spec v0.1. No network, no persistence. */
+
+var CREWS = [
+  /* ---- Substituted: lineup changed since the last export (spec 5.2) ---- */
+  { id:"2409877", cat:"sub", crew:"Star Club", letter:"A", club:"STA", clubName:"Star Club",
+    event:"Women's Senior Eight", ident:"W.8+", div:"Division 2", band:"Band 1", group:"Group 1",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:124.6, base:118.2 },
+    seatsOut:[{ n:"Seat 3", name:"H. Whitmore", pri:"PRI 121.0" }],
+    seatsIn:[{ n:"Seat 3", name:"K. Adeyemi", pri:"PRI 168.4", sub:true }],
+    impact:"Crew ranking index rose 6.4 above baseline. Band 1 was assigned on the baseline figure.",
+    keep:{ "Crew number":"114", "Boating time":"09:12", "Marshalling":"Bay 3" },
+    contact:{ name:"J. Farrow", mobile:"07700 900412", email:"captain@starclub.example" } },
+
+  { id:"2409912", cat:"sub", crew:"Bedford Rowing Club", letter:"B", club:"BED", clubName:"Bedford Rowing Club",
+    event:"Open Four", ident:"Op.4-", div:"Division 1", band:"Band 2", group:"",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:109.8, base:107.1 },
+    seatsOut:[{ n:"Seat 2", name:"D. Okonjo", pri:"PRI 104.5" }],
+    seatsIn:[{ n:"Seat 2", name:"R. Pemberton", pri:"PRI 115.3", sub:true }],
+    impact:"Index moved 2.7 above baseline. Still inside Band 2 on current thresholds.",
+    keep:{ "Crew number":"78", "Boating time":"10:04", "Marshalling":"Bay 1" },
+    contact:{ name:"S. Hollis", mobile:"07700 900188", email:"racing@bedfordrc.example" } },
+
+  { id:"2409934", cat:"sub", crew:"Northampton SC", letter:"A", club:"NSC", clubName:"Northampton Rowing Club",
+    event:"Masters B Double", ident:"MasB.2x", div:"Division 3", band:"", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:88.4, base:92.7 },
+    seatsOut:[{ n:"Seat 1", name:"M. Callaghan", pri:"PRI 97.2" }],
+    seatsIn:[{ n:"Seat 1", name:"P. Nkemdirim", pri:"PRI 79.6", sub:true }],
+    impact:"Index fell 4.3 below baseline. Masters category may also change - check the handicap file.",
+    keep:{ "Crew number":"203", "Boating time":"11:20", "Marshalling":"Bay 2" },
+    contact:{ name:"A. Reddy", mobile:"07700 900733", email:"entries@northamptonrc.example" } },
+
+  { id:"2409958", cat:"sub", crew:"Peterborough City RC", letter:"A", club:"PET", clubName:"Peterborough City Rowing Club",
+    event:"J18 Eight", ident:"J18.8+", div:"Division 2", band:"Band 1", group:"Group 2",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:96.1, base:91.5 },
+    seatsOut:[{ n:"Seat 5", name:"T. Oyelaran", pri:"PRI 88.0" },
+              { n:"Cox",    name:"L. Beckwith", pri:"Coxing 61.2" }],
+    seatsIn:[{ n:"Seat 5", name:"C. Vasquez",  pri:"PRI 102.7", sub:true },
+             { n:"Cox",    name:"F. Adeyinka", pri:"Coxing 74.8", sub:true }],
+    impact:"Two seats including the cox. Index rose 4.6 above baseline.",
+    keep:{ "Crew number":"56", "Boating time":"09:48", "Marshalling":"Bay 4" },
+    contact:{ name:"N. Dhillon", mobile:"07700 900920", email:"junior@petcityrc.example" } },
+
+  /* ---- CRI drift: same lineup, ranking index moved (spec 6.1) ---- */
+  { id:"2409901", cat:"cri", crew:"Peterborough City RC", letter:"B", club:"PET", clubName:"Peterborough City Rowing Club",
+    event:"Masters C Double", ident:"MasC.2x", div:"Division 3", band:"Band 2", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:103.5, base:96.8 },
+    impact:"Same four competitors as the last export. Both scullers picked up ranking points at Peterborough Small Boats on 28 September, so the live index has moved without any lineup change.",
+    keep:{ "Crew number":"188", "Boating time":"11:02", "Marshalling":"Bay 2" },
+    contact:{ name:"N. Dhillon", mobile:"07700 900920", email:"entries@petcityrc.example" } },
+
+  { id:"2409866", cat:"cri", crew:"Bedford Rowing Club", letter:"A", club:"BED", clubName:"Bedford Rowing Club",
+    event:"Open Eight", ident:"Op.8+", div:"Division 1", band:"Band 1", group:"Group 1",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:137.4, base:131.0 },
+    impact:"Index rose 6.4 with no change of lineup. This crew sits close to the Band 1 boundary.",
+    keep:{ "Crew number":"12", "Boating time":"09:00", "Marshalling":"Bay 1" },
+    contact:{ name:"S. Hollis", mobile:"07700 900188", email:"racing@bedfordrc.example" } },
+
+  { id:"2409889", cat:"cri", crew:"Star Club", letter:"B", club:"STA", clubName:"Star Club",
+    event:"Women's Quad", ident:"W.4x-", div:"Division 2", band:"Band 2", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:109.9, base:104.2 },
+    impact:"Index rose 5.7 with no change of lineup.",
+    keep:{ "Crew number":"131", "Boating time":"09:30", "Marshalling":"Bay 3" },
+    contact:{ name:"J. Farrow", mobile:"07700 900412", email:"captain@starclub.example" } },
+
+  /* ---- New crews ---- */
+  { id:"2410551", cat:"new", crew:"Bedford Rowing Club", letter:"C", club:"BED", clubName:"Bedford Rowing Club",
+    event:"Open Championship Quad", ident:"Op.4x-", div:"Division 1", band:"", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:112.4, base:112.4 },
+    lineup:[{ n:"Seat 1", name:"E. Marchetti", pri:"PRI 108.2" },
+            { n:"Seat 2", name:"G. Iwu",       pri:"PRI 114.9" },
+            { n:"Seat 3", name:"H. Stannard",  pri:"PRI 110.1" },
+            { n:"Seat 4", name:"O. Fairhurst", pri:"PRI 116.3" }],
+    impact:"Entered 6 October, after the previous export. Needs a band and a crew number.",
+    contact:{ name:"S. Hollis", mobile:"07700 900188", email:"racing@bedfordrc.example" } },
+
+  { id:"2410566", cat:"new", crew:"Star Club", letter:"C", club:"STA", clubName:"Star Club",
+    event:"Women's Senior Double", ident:"W.2x", div:"Division 2", band:"", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:94.7, base:94.7 },
+    lineup:[{ n:"Seat 1", name:"A. Petrenko", pri:"PRI 92.4" },
+            { n:"Seat 2", name:"R. Nwosu",    pri:"PRI 97.0" }],
+    impact:"Entered 6 October. Needs a band and a crew number.",
+    contact:{ name:"J. Farrow", mobile:"07700 900412", email:"captain@starclub.example" } },
+
+  { id:"2410572", cat:"new", crew:"Peterborough City RC", letter:"C", club:"PET", clubName:"Peterborough City Rowing Club",
+    event:"Masters D Coxed Four", ident:"MasD.4+", div:"Division 3", band:"", group:"",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:81.2, base:81.2 },
+    lineup:[{ n:"Seat 1", name:"B. Achterberg", pri:"PRI 78.5" },
+            { n:"Seat 2", name:"W. Trescothick", pri:"PRI 83.1" },
+            { n:"Seat 3", name:"D. Ferreira",   pri:"PRI 80.4" },
+            { n:"Seat 4", name:"K. Mbeki",      pri:"PRI 82.9" },
+            { n:"Cox",    name:"J. Lindqvist",  pri:"Coxing 58.0" }],
+    impact:"Entered 7 October. Masters category to be confirmed against the handicap file.",
+    contact:{ name:"N. Dhillon", mobile:"07700 900920", email:"entries@petcityrc.example" } },
+
+  { id:"2410588", cat:"new", crew:"Nottingham RC", letter:"B", club:"NOT", clubName:"Nottingham Rowing Club",
+    event:"J16 Coxed Quad", ident:"J16.4x+", div:"Division 3", band:"", group:"",
+    status:"Submitted", idx:{ label:"Sculling CRI", live:64.8, base:64.8 },
+    lineup:[{ n:"Seat 1", name:"S. Ibarra",   pri:"PRI 62.0" },
+            { n:"Seat 2", name:"M. Cheung",   pri:"PRI 66.5" },
+            { n:"Seat 3", name:"T. Aleksic",  pri:"PRI 63.8" },
+            { n:"Seat 4", name:"V. Osei",     pri:"PRI 67.1" },
+            { n:"Cox",    name:"R. Halvorsen",pri:"Coxing 55.4" }],
+    impact:"Still Submitted rather than Accepted - unpaid at the time of export.",
+    contact:{ name:"C. Whitlock", mobile:"07700 900355", email:"entries@nottinghamrc.example" } },
+
+  { id:"2410590", cat:"new", crew:"Cantabrigian / Northampton", letter:"A", club:"CAM", clubName:"Cantabrigian Rowing Club",
+    composite:["CAM","NSC"],
+    event:"Open Pair", ident:"Op.2-", div:"Division 2", band:"", group:"",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:118.9, base:118.9 },
+    lineup:[{ n:"Seat 1", name:"L. Brannigan", pri:"PRI 117.2 (CAM)" },
+            { n:"Seat 2", name:"Y. Takahashi",  pri:"PRI 120.6 (NSC)" }],
+    impact:"Composite entry. Both club codes resolve against the cached club list.",
+    contact:{ name:"P. Sandoval", mobile:"07700 900601", email:"captain@cantabs.example" } },
+
+  { id:"2410603", cat:"new", crew:"KR Club Gent", letter:"A", club:"ZGHE", clubName:"Koninklijke Roeivereniging Gent",
+    event:"Open Single", ident:"Op.1x", div:"Division 1", band:"", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:0, base:0 },
+    lineup:[{ n:"Seat 1", name:"J. Vandenberghe", pri:"No PRI held" }],
+    impact:"Overseas entry - four-letter club code beginning Z. No British Rowing ranking index, so banding must be set by hand.",
+    contact:{ name:"J. Vandenberghe", mobile:"+32 470 12 34 56", email:"secretary@krgent.example" } },
+
+  /* ---- Moved between events ---- */
+  { id:"2409615", cat:"move", crew:"Cantabrigian RC", letter:"A", club:"CAM", clubName:"Cantabrigian Rowing Club",
+    event:"Open Club Quad", ident:"Op.4x-", div:"Division 2", band:"", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:99.4, base:99.4 },
+    from:"Open Novice Quad (Op.4x- Nov)", to:"Open Club Quad (Op.4x-)",
+    impact:"Moved by the organiser after entries closed. The band assigned under the old event no longer applies and has been cleared.",
+    keep:{ "Crew number":"142", "Boating time":"10:30", "Marshalling":"Bay 2" },
+    contact:{ name:"P. Sandoval", mobile:"07700 900601", email:"captain@cantabs.example" } },
+
+  { id:"2409702", cat:"move", crew:"Nottingham RC", letter:"A", club:"NOT", clubName:"Nottingham Rowing Club",
+    event:"Women's Coxed Quad", ident:"W.4x+", div:"Division 3", band:"", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:86.3, base:86.3 },
+    from:"Women's Coxed Four (W.4+)", to:"Women's Coxed Quad (W.4x+)",
+    impact:"Club asked to move from sweep to sculling. Seat count still matches the event.",
+    keep:{ "Crew number":"167", "Boating time":"11:15", "Marshalling":"Bay 4" },
+    contact:{ name:"C. Whitlock", mobile:"07700 900355", email:"entries@nottinghamrc.example" } },
+
+  /* ---- No longer racing ---- */
+  { id:"2410002", cat:"out", crew:"Nottingham RC", letter:"C", club:"NOT", clubName:"Nottingham Rowing Club",
+    event:"J16 Coxed Quad", ident:"J16.4x+", div:"Division 3", band:"Band 2", group:"",
+    was:"Accepted", status:"Withdraw", idx:{ label:"Sculling CRI", live:0, base:0 },
+    impact:"Withdrawn by the club on 5 October. Frees crew number 91 and a slot in Division 3.",
+    keep:{ "Crew number":"91 (now free)", "Boating time":"cleared", "Marshalling":"cleared" },
+    contact:{ name:"C. Whitlock", mobile:"07700 900355", email:"entries@nottinghamrc.example" } },
+
+  { id:"2410120", cat:"out", crew:"Bedford Rowing Club", letter:"D", club:"BED", clubName:"Bedford Rowing Club",
+    event:"Open Championship Quad", ident:"Op.4x-", div:"Division 1", band:"Band 1", group:"Group 1",
+    was:"Accepted", status:"Scratched", idx:{ label:"Sculling CRI", live:0, base:0 },
+    impact:"Scratched by the organiser. Band 1 Group 1 now has one fewer crew.",
+    keep:{ "Crew number":"22 (now free)", "Boating time":"cleared", "Marshalling":"cleared" },
+    contact:{ name:"S. Hollis", mobile:"07700 900188", email:"racing@bedfordrc.example" } },
+
+  { id:"2409845", cat:"out", crew:"Star Club", letter:"D", club:"STA", clubName:"Star Club",
+    event:"Women's Single", ident:"W.1x", div:"Division 2", band:"", group:"",
+    was:"Submitted", status:"Rejected", idx:{ label:"Sculling CRI", live:0, base:0 },
+    impact:"Rejected as over-subscribed. Entry was submitted after the cut-off time used for this event.",
+    keep:{ "Crew number":"not assigned", "Boating time":"-", "Marshalling":"-" },
+    contact:{ name:"J. Farrow", mobile:"07700 900412", email:"captain@starclub.example" } },
+
+  { id:"2409999", cat:"out", crew:"Northampton SC", letter:"B", club:"NSC", clubName:"Northampton Rowing Club",
+    event:"Masters A Eight", ident:"MasA.8+", div:"Division 3", band:"", group:"",
+    was:"Accepted", status:"Withdraw", idx:{ label:"Rowing CRI", live:0, base:0 },
+    impact:"Withdrawn 4 October. Only three crews now remain in this event.",
+    keep:{ "Crew number":"210 (now free)", "Boating time":"cleared", "Marshalling":"cleared" },
+    contact:{ name:"A. Reddy", mobile:"07700 900733", email:"entries@northamptonrc.example" } },
+
+  { id:"2410044", cat:"out", crew:"Peterborough City RC", letter:"D", club:"PET", clubName:"Peterborough City Rowing Club",
+    event:"J14 Coxed Quad", ident:"J14.4x+", div:"Division 3", band:"", group:"",
+    was:"Accepted", status:"Scratched", idx:{ label:"Sculling CRI", live:0, base:0 },
+    impact:"Scratched - crew could not raise a cox.",
+    keep:{ "Crew number":"245 (now free)", "Boating time":"cleared", "Marshalling":"cleared" },
+    contact:{ name:"N. Dhillon", mobile:"07700 900920", email:"entries@petcityrc.example" } },
+
+  /* ---- Unchanged (sample of 118) ---- */
+  { id:"2409601", cat:"same", crew:"Bedford Rowing Club", letter:"E", club:"BED", clubName:"Bedford Rowing Club",
+    event:"Open Coxed Four", ident:"Op.4+", div:"Division 1", band:"Band 2", group:"",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:102.6, base:102.6 },
+    impact:"No change since the previous export.",
+    keep:{ "Crew number":"31", "Boating time":"09:20", "Marshalling":"Bay 1" },
+    contact:{ name:"S. Hollis", mobile:"07700 900188", email:"racing@bedfordrc.example" } },
+
+  { id:"2409604", cat:"same", crew:"Star Club", letter:"E", club:"STA", clubName:"Star Club",
+    event:"Women's Eight", ident:"W.8+", div:"Division 2", band:"Band 2", group:"Group 1",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:98.1, base:98.1 },
+    impact:"No change since the previous export.",
+    keep:{ "Crew number":"120", "Boating time":"09:36", "Marshalling":"Bay 3" },
+    contact:{ name:"J. Farrow", mobile:"07700 900412", email:"captain@starclub.example" } },
+
+  { id:"2409607", cat:"same", crew:"Northampton SC", letter:"C", club:"NSC", clubName:"Northampton Rowing Club",
+    event:"Masters C Coxed Four", ident:"MasC.4+", div:"Division 3", band:"", group:"",
+    status:"Accepted", idx:{ label:"Rowing CRI", live:84.9, base:84.9 },
+    impact:"No change since the previous export.",
+    keep:{ "Crew number":"219", "Boating time":"11:08", "Marshalling":"Bay 2" },
+    contact:{ name:"A. Reddy", mobile:"07700 900733", email:"entries@northamptonrc.example" } },
+
+  { id:"2409610", cat:"same", crew:"Nottingham RC", letter:"D", club:"NOT", clubName:"Nottingham Rowing Club",
+    event:"J18 Coxed Quad", ident:"J18.4x+", div:"Division 3", band:"Band 1", group:"",
+    status:"Accepted", idx:{ label:"Sculling CRI", live:76.2, base:76.2 },
+    impact:"No change since the previous export.",
+    keep:{ "Crew number":"172", "Boating time":"11:24", "Marshalling":"Bay 4" },
+    contact:{ name:"C. Whitlock", mobile:"07700 900355", email:"entries@nottinghamrc.example" } }
+];
+
+var LABEL = {
+  new:  "New crew",
+  sub:  "Substituted",
+  cri:  "CRI drift",
+  move: "Moved event",
+  out:  "Not racing",
+  same: "Unchanged"
+};
+
+var FILES = [
+  { n:"Competition",   s:"in" }, { n:"Divisions",   s:"in" },
+  { n:"Events",        s:"in" }, { n:"Event Bands", s:"up" },
+  { n:"Clubs",         s:"in" }, { n:"Crews",       s:"in" },
+  { n:"WithdrawnRejectedScratched", s:"in" },
+  { n:"Competitors",   s:"in" }, { n:"Crew Baselines", s:"in" },
+  { n:"Masters Handicaps", s:"in" }, { n:"Crew Bands", s:"up" },
+  { n:"Custom Crew Information", s:"out" }, { n:"Starting List", s:"out" }
+];
+
+var NOTICES = [
+  { k:"ok", t:"138 crews and 782 competitors resolved",
+    d:"Every Crew ID in Competitors matches a crew, every crew matches an event, and seat counts agree with each event.",
+    r:"spec 10.1" },
+  { k:"warn", t:"1 masters crew is in a different category from the one entered",
+    d:"Crew 2409934 Northampton SC entered Masters B. The handicap file gives its actual category as C. The handicap calculation uses C.",
+    r:"spec 6.7" },
+  { k:"warn", t:"1 crew references a band that does not exist yet",
+    d:"Crew 2409958 is assigned to Band 1 Group 2 in this export, but Group 2 is not in Event Bands. Create it in BROE2 before uploading any crew band file.",
+    r:"spec 6.12" },
+  { k:"warn", t:"2 unrecognised columns in Crews.csv were logged and skipped",
+    d:"Columns EntrySource and PortalRef are not in format V8. They have been recorded against this import and ignored.",
+    r:"spec 10.1" }
+];
+
+var filter = null;
+var showPii = false;
+
+function esc(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function seatRow(s, kind) {
+  return '<div class="seat seat--' + kind + '">' +
+    '<span class="seat__n">' + esc(s.n) + '</span>' +
+    '<span class="seat__name">' + esc(s.name) +
+      (s.sub ? ' <span class="seat__tag">sub</span>' : '') + '</span>' +
+    '<span class="seat__pri">' + esc(s.pri) + '</span></div>';
+}
+
+function plainSeat(s) {
+  return '<div class="seat">' +
+    '<span class="seat__n">' + esc(s.n) + '</span>' +
+    '<span class="seat__name">' + esc(s.name) + '</span>' +
+    '<span class="seat__pri">' + esc(s.pri) + '</span></div>';
+}
+
+function kvBlock(obj) {
+  var out = "";
+  for (var k in obj) {
+    out += '<span class="kv__k">' + esc(k) + '</span><span class="kv__v">' + esc(obj[k]) + '</span>';
+  }
+  return '<div class="kv">' + out + '</div>';
+}
+
+function contactBox(c) {
+  if (!showPii) {
+    return '<div class="box"><h3>Race-day contact</h3>' +
+      '<p class="note">Discarded at ingest. BoatLog is not storing the eight telephone and four email fields this export carries for each crew. Turn on <em>Keep contact details</em> below if you need them on the day.</p>' +
+      '<p class="ref">spec 9 &middot; minimisation at ingest</p></div>';
+  }
+  return '<div class="box"><h3>Race-day contact</h3>' +
+    kvBlock({ "Name": c.name, "Mobile": c.mobile, "Email": c.email }) +
+    '<p class="note">Held for this competition only, and purged with the rest of the imported personal data on the six-week schedule.</p>' +
+    '<p class="ref">spec 9</p></div>';
+}
+
+function detailHtml(c) {
+  var left = "", right = "";
+
+  if (c.cat === "sub") {
+    left = '<div class="box box--warn"><h3>Lineup change</h3><div class="seats">' +
+      c.seatsOut.map(function (s) { return seatRow(s, "out"); }).join("") +
+      c.seatsIn.map(function (s) { return seatRow(s, "in"); }).join("") +
+      '</div>' + criLine(c) + '<p class="note">' + esc(c.impact) + '</p>' +
+      '<p class="ref">spec 5.2 &middot; substitution</p></div>';
+    right = keepBox(c) + contactBox(c.contact);
+
+  } else if (c.cat === "cri") {
+    left = '<div class="box box--warn"><h3>Ranking index moved</h3>' + criLine(c) +
+      '<p class="note">' + esc(c.impact) + '</p>' +
+      '<p class="ref">spec 6.1 &middot; banding trigger</p></div>';
+    right = keepBox(c) + contactBox(c.contact);
+
+  } else if (c.cat === "new") {
+    left = '<div class="box"><h3>Lineup as entered</h3><div class="seats">' +
+      c.lineup.map(plainSeat).join("") + '</div>' +
+      '<p class="note">' + esc(c.impact) + '</p>' +
+      '<p class="ref">Names shown as initial and surname, per the published-paperwork rule (spec 9)</p></div>';
+    right = '<div class="box"><h3>Will be created</h3>' +
+      kvBlock({ "Crew ID": c.id, "Event": c.ident, "Division": c.div,
+                "Status": c.status, "Band": "not yet assigned" }) +
+      '</div>' + contactBox(c.contact);
+
+  } else if (c.cat === "move") {
+    left = '<div class="box"><h3>Event change</h3>' +
+      '<div class="seats"><div class="seat seat--out"><span class="seat__n">From</span>' +
+      '<span class="seat__name">' + esc(c.from) + '</span><span class="seat__pri"></span></div>' +
+      '<div class="seat seat--in"><span class="seat__n">To</span>' +
+      '<span class="seat__name">' + esc(c.to) + '</span><span class="seat__pri"></span></div></div>' +
+      '<p class="note">' + esc(c.impact) + '</p>' +
+      '<p class="ref">spec 5.2 &middot; re-evented</p></div>';
+    right = keepBox(c) + contactBox(c.contact);
+
+  } else if (c.cat === "out") {
+    left = '<div class="box"><h3>Status change</h3>' +
+      '<div class="seats"><div class="seat seat--out"><span class="seat__n">Was</span>' +
+      '<span class="seat__name">' + esc(c.was) + '</span><span class="seat__pri"></span></div>' +
+      '<div class="seat seat--out"><span class="seat__n">Now</span>' +
+      '<span class="seat__name">' + esc(c.status) + '</span><span class="seat__pri"></span></div></div>' +
+      '<p class="note">' + esc(c.impact) + '</p>' +
+      '<p class="ref">Status value is written exactly as BROE2 sends it &mdash; ' +
+      '<code>Withdraw</code>, not <code>Withdrawn</code> (spec 6.1)</p></div>';
+    right = keepBox(c) + contactBox(c.contact);
+
+  } else {
+    left = '<div class="box"><h3>No change</h3><p class="note">' + esc(c.impact) +
+      ' Nothing will be written for this crew.</p></div>';
+    right = keepBox(c) + contactBox(c.contact);
+  }
+
+  return '<div class="detail"><div class="detail__grid"><div>' + left + '</div><div style="display:grid;gap:1rem">' +
+    right + '</div></div></div>';
+}
+
+function criLine(c) {
+  var d = (c.idx.live - c.idx.base).toFixed(1);
+  return kvBlock({
+    "Baseline at close of entries": c.idx.base.toFixed(1),
+    "Live in this export": c.idx.live.toFixed(1),
+    "Movement": (d > 0 ? "+" : "") + d,
+    "Band assigned in BoatLog": c.band ? (c.band + (c.group ? " " + c.group : "")) : "none"
+  });
+}
+
+function keepBox(c) {
+  if (!c.keep) { return ""; }
+  return '<div class="box box--keep"><h3>Your work, kept</h3>' + kvBlock(c.keep) +
+    '<p class="note">The import never writes to the BoatLog side of a crew record, so re-importing does not undo race-day planning.</p>' +
+    '<p class="ref">spec 4.1 &middot; boatlog namespace</p></div>';
+}
+
+function crewRow(c) {
+  var d = c.idx.live - c.idx.base;
+  var criCell = c.idx.live === 0
+    ? '<span class="cri"><span class="cri__d cri__d--flat">n/a</span></span>'
+    : '<span class="cri">' + c.idx.live.toFixed(1) +
+      '<span class="cri__d ' + (Math.abs(d) >= 0.05 ? "cri__d--up" : "cri__d--flat") + '">' +
+      (Math.abs(d) < 0.05 ? "at baseline" : (d > 0 ? "+" : "") + d.toFixed(1)) + '</span></span>';
+
+  var meta = c.club + " &middot; " + c.div +
+    (c.band ? " &middot; " + c.band + (c.group ? " " + c.group : "") : "") +
+    (c.composite ? " &middot; composite " + c.composite.join("+") : "");
+
+  return '<div class="row" data-cat="' + c.cat + '">' +
+    '<button class="row__btn" type="button" aria-expanded="false">' +
+      '<span class="cid">' + c.id + '</span>' +
+      '<span><span class="crew__name">' + esc(c.crew) + ' ' + c.letter + '</span>' +
+        '<span class="crew__meta">' + meta + '</span></span>' +
+      '<span class="ev">' + esc(c.event) + '<span class="ev__id">' + esc(c.ident) + '</span></span>' +
+      '<span class="pill pill--' + c.cat + '">' + LABEL[c.cat] + '</span>' +
+      criCell +
+      '<span class="chev" aria-hidden="true">&rsaquo;</span>' +
+    '</button>' + detailHtml(c) + '</div>';
+}
+
+var rowsEl   = document.getElementById("rows");
+var titleEl  = document.getElementById("listTitle");
+var countEl  = document.getElementById("listCount");
+var statBtns = Array.prototype.slice.call(document.querySelectorAll(".stat"));
+
+function match(c) {
+  if (filter === "banding") { return c.cat === "sub" || c.cat === "cri"; }
+  if (filter) { return c.cat === filter; }
+  return c.cat !== "same";
+}
+
+function render() {
+  var list = CREWS.filter(match);
+  rowsEl.innerHTML = list.map(crewRow).join("");
+
+  if (filter === "banding") {
+    titleEl.textContent = "Crews affecting banding";
+    countEl.textContent = "7 shown";
+  } else if (filter) {
+    titleEl.textContent = LABEL[filter] === "Unchanged" ? "Unchanged crews" : LABEL[filter] + " crews";
+    countEl.textContent = (filter === "same" ? "118" : list.length) + " shown";
+  } else {
+    titleEl.textContent = "Changed crews";
+    countEl.textContent = "20 shown";
+  }
+
+  if (filter === "same") {
+    rowsEl.insertAdjacentHTML("beforeend",
+      '<div class="notice notice--ok"><span class="notice__ico">&middot;</span>' +
+      '<span><strong>114 further unchanged crews are not listed.</strong>' +
+      '<p>They are identical to the previous import and nothing will be written for them.</p></span><span></span></div>');
+  }
+
+  statBtns.forEach(function (b) {
+    b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
+  });
+  document.getElementById("impactBtn").textContent =
+    filter === "banding" ? "Show all changes" : "Show only these 7";
+}
+
+rowsEl.addEventListener("click", function (e) {
+  var btn = e.target.closest(".row__btn");
+  if (!btn) { return; }
+  var row = btn.parentNode;
+  var open = row.classList.toggle("is-open");
+  btn.setAttribute("aria-expanded", String(open));
+});
+
+statBtns.forEach(function (b) {
+  b.addEventListener("click", function () {
+    filter = (filter === b.dataset.filter) ? null : b.dataset.filter;
+    render();
+  });
+});
+
+document.getElementById("impactBtn").addEventListener("click", function () {
+  filter = (filter === "banding") ? null : "banding";
+  render();
+  document.getElementById("listTitle").scrollIntoView({ block: "center", behavior: "smooth" });
+});
+
+document.getElementById("piiToggle").addEventListener("change", function (e) {
+  showPii = e.target.checked;
+  document.getElementById("piiHint").textContent = showPii
+    ? "On: contact fields are kept for this competition and purged on the six-week schedule"
+    : "Off: 8 phone and 4 email fields per crew are discarded at ingest";
+  render();
+});
+
+/* File manifest */
+document.getElementById("manifest").innerHTML = FILES.map(function (f) {
+  var cls = f.s === "out" ? "fchip fchip--miss" : (f.s === "up" ? "fchip fchip--up" : "fchip");
+  var suffix = f.s === "out" ? " not in this export" : (f.s === "up" ? " uploadable" : "");
+  return '<span class="' + cls + '"><span class="dot"></span>' + f.n + suffix + '</span>';
+}).join("");
+
+/* Checks */
+document.getElementById("notices").innerHTML = NOTICES.map(function (n) {
+  return '<div class="notice notice--' + n.k + '">' +
+    '<span class="notice__ico">' + (n.k === "ok" ? "&check;" : "!") + '</span>' +
+    '<span><strong>' + n.t + '</strong><p>' + n.d + '</p></span>' +
+    '<span class="ref">' + n.r + '</span></div>';
+}).join("");
+
+/* Theme */
+var themeBtn = document.getElementById("themeBtn");
+function isDark() {
+  var set = document.documentElement.getAttribute("data-theme");
+  if (set) { return set === "dark"; }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+function syncThemeBtn() { themeBtn.textContent = isDark() ? "Light" : "Dark"; }
+themeBtn.addEventListener("click", function () {
+  document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
+  syncThemeBtn();
+});
+syncThemeBtn();
+
+/* Commit */
+document.getElementById("commitBtn").addEventListener("click", function () {
+  document.querySelector(".commit__in").innerHTML =
+    '<p class="commit__sum"><strong>Import committed.</strong> 20 crews written, ' +
+    '118 left untouched. Seven crews are flagged for banding review' +
+    (showPii ? "" : ", and contact details were discarded at ingest") + '.</p>' +
+    '<div class="commit__act"><button class="btn btn--primary" type="button">Review banding</button></div>';
+});
+
+render();
+</script>
