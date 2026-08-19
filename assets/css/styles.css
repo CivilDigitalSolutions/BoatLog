@@ -245,6 +245,10 @@ h4 { font-size: var(--fs-500); }
 .footer-links li { margin-bottom: var(--sp-2); }
 .footer-links a { color: #b6c4d4; }
 .footer-links a:hover { color: var(--teal); text-decoration: none; }
+@media (max-width: 760px) {
+  .footer-links a { display: inline-block; padding-block: 10px; }
+  .footer-links li { margin-bottom: 0; }
+}
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.1); margin-top: var(--sp-7); padding-top: var(--sp-5);
   display: flex; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap;
