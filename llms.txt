@@ -1,0 +1,36 @@
+# BoatLog
+
+> BoatLog is rowing club software for UK clubs, built by Civil Digital (Bedford, UK). It replaces the paper boat sign-out book with an offline-first app and boathouse kiosk, and covers bookings, damage and repair reporting, incident and near-miss logging, a club-wide red/amber/green safety flag, overdue-outing alerts, member qualifications (swim tests, capsize drills, DBS checks, Powerboat Level 2) with expiry reminders, and membership subs. BoatLog is independent and is not affiliated with or endorsed by British Rowing.
+
+## Product
+
+- [Home](https://boatlog.civildigital.co.uk/): overview of BoatLog and FAQ
+- [Boat sign-out & kiosk](https://boatlog.civildigital.co.uk/boat-sign-out/): offline sign-out/sign-in and the boathouse tablet
+- [Safety](https://boatlog.civildigital.co.uk/safety/): RAG safety flag, overdue-outing alerts and incident logging
+- [Incident reporting](https://boatlog.civildigital.co.uk/incident-reporting/): how BoatLog supports British Rowing's incident reporting process
+- [Damage reporting](https://boatlog.civildigital.co.uk/damage-reporting/): defects, repairs and taking boats out of service
+
+## Guides
+
+- [British Rowing incident reporting: a club's step-by-step guide](https://boatlog.civildigital.co.uk/guides/british-rowing-incident-reporting/): What counts as reportable, who's responsible, and how to file a report within 24 hours.
+- [How to run a boat sign-out system for your rowing club (+ free template)](https://boatlog.civildigital.co.uk/guides/boat-sign-out-system/): A step-by-step guide to setting up a sign-out system, plus a free printable template.
+- [RAG flags for rowing outings: a simple club system](https://boatlog.civildigital.co.uk/guides/rag-flags-for-rowing-outings/): A plain-language way to flag risk before anyone gets on the water.
+- [British Rowing club safety audit: a quick guide for clubs](https://boatlog.civildigital.co.uk/guides/british-rowing-safety-audit/): What the annual British Rowing club safety audit is, when it runs, what evidence helps, and how to keep that evidence ready all year.
+- [Thames red and yellow boards explained for rowing clubs](https://boatlog.civildigital.co.uk/guides/thames-red-yellow-boards-rowing/): What the Environment Agency's red and yellow stream boards on the non-tidal Thames mean for rowing clubs, and how to make one clear go/no-go call.
+- [Rowing in floods and strong stream: when to stop](https://boatlog.civildigital.co.uk/guides/rowing-in-floods-strong-stream/): How rowing clubs decide whether to boat in high water: the warning signs, setting your own limits, and telling every member before they go out.
+- [Cold water shock and winter rowing: a club safety guide](https://boatlog.civildigital.co.uk/guides/cold-water-shock-winter-rowing/): Why cold water is the biggest winter risk for rowers, what cold water shock and hypothermia mean for a capsize, and simple club rules for winter outings.
+- [Rowing in the dark: lights and winter outings](https://boatlog.civildigital.co.uk/guides/rowing-in-the-dark-lights/): What rowing clubs need to think about for dark mornings and evenings: lights on boats, being seen, local navigation rules and clear club policy.
+- [Pre-outing boat checks: heel restraints, bow balls and quarantining kit](https://boatlog.civildigital.co.uk/guides/pre-outing-boat-checks/): A quick pre-outing boat check for rowing clubs: heel restraints, bow balls, hatches, fin, lights, and what to do with a boat that fails.
+- [Rowing swim test and capsize drill: what clubs ask for](https://boatlog.civildigital.co.uk/guides/rowing-swim-test-capsize-drill/): What rowing clubs ask for before someone goes on the water: the swim test, the capsize drill, why clubs differ, and how to keep track of who has done them.
+- [DBS checks for rowing clubs: who needs one](https://boatlog.civildigital.co.uk/guides/dbs-checks-rowing-clubs/): Which rowing club volunteers and coaches need a DBS check, how checks are arranged through the club welfare officer, and keeping track of renewals.
+- [The club rowing safety adviser role: duties and checklist](https://boatlog.civildigital.co.uk/guides/club-rowing-safety-adviser-role/): What a club rowing safety adviser does: duties, a first-month checklist for a new adviser, and how to make the role manageable for a volunteer.
+- [Rowing club emergency response plan: what to include](https://boatlog.civildigital.co.uk/guides/rowing-club-emergency-response-plan/): What a rowing club emergency response plan should cover: who is on the water, who to call, access points for ambulances, and how to keep the plan usable.
+- [Near misses in rowing: what counts and why to report](https://boatlog.civildigital.co.uk/guides/rowing-near-miss-reporting/): What counts as a near miss in rowing, why British Rowing wants near misses reported, and how to make reporting easy for every member.
+- [The British Rowing affiliation year: a club admin calendar](https://boatlog.civildigital.co.uk/guides/british-rowing-affiliation-calendar/): The rowing club admin year at a glance: safety audit, membership declaration, affiliation renewal and new members, and what each needs from your records.
+- [Rowing club risk assessment: a simple, RowSafe-aligned method](https://boatlog.civildigital.co.uk/guides/rowing-club-risk-assessment/): How to write a rowing club risk assessment that people actually use: hazards, controls, who decides, and turning it into daily go/no-go rules.
+- [Coaching launch safety: kill cords, drivers and checks](https://boatlog.civildigital.co.uk/guides/coaching-launch-safety/): Safety for rowing coaching launches: kill cords, driver qualifications, pre-use checks and what to carry, plus tracking who is qualified to drive.
+
+## Contact
+
+- info@civildigital.co.uk
+- Free 14-day trial: https://app.boatlog.civildigital.co.uk/signup

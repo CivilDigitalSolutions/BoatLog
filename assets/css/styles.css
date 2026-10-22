@@ -379,3 +379,10 @@ h4 { font-size: var(--fs-500); }
   .nav__links.is-open { display: flex; }
   .nav__links li { padding: var(--sp-2) 0; }
 }
+
+/* ---- Guide screenshots & independence note ------------------------------ */
+.prose .independent { font-size: var(--fs-300); color: var(--muted); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: var(--sp-3) 0; margin: 0 0 var(--sp-6); }
+.prose figure.shot { margin: var(--sp-6) auto; max-width: 360px; text-align: center; }
+.prose figure.shot img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(11, 31, 58, 0.14); }
+.prose figure.shot figcaption { font-size: var(--fs-300); color: var(--muted); margin-top: var(--sp-3); }
+.prose figure.shot figcaption span { display: block; font-style: italic; }
