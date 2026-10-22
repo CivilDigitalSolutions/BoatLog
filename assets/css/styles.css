@@ -386,3 +386,15 @@ h4 { font-size: var(--fs-500); }
 .prose figure.shot img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(11, 31, 58, 0.14); }
 .prose figure.shot figcaption { font-size: var(--fs-300); color: var(--muted); margin-top: var(--sp-3); }
 .prose figure.shot figcaption span { display: block; font-style: italic; }
+.prose figure.shot--wide { max-width: 100%; }
+.prose figure.shot--wide img { border-radius: var(--radius-sm); }
+
+/* ---- Calendar table ----------------------------------------------------- */
+.table-wrap { overflow-x: auto; margin: var(--sp-5) 0; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.cal-table { width: 100%; border-collapse: collapse; font-size: var(--fs-300); min-width: 640px; }
+.cal-table th, .cal-table td { text-align: left; padding: var(--sp-3); border-bottom: 1px solid var(--line); vertical-align: top; color: var(--body); }
+.cal-table th { background: var(--mist); color: var(--navy); font-weight: 600; }
+.cal-table tr:last-child td { border-bottom: 0; }
+.cal-badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-weight: 600; font-size: 0.8rem; white-space: nowrap; }
+.cal-ok { background: #dff5f2; color: #0f6b62; }
+.cal-exp { background: #eef1f5; color: var(--muted); }
