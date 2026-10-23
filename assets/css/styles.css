@@ -398,3 +398,7 @@ h4 { font-size: var(--fs-500); }
 .cal-badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-weight: 600; font-size: 0.8rem; white-space: nowrap; }
 .cal-ok { background: #dff5f2; color: #0f6b62; }
 .cal-exp { background: #eef1f5; color: var(--muted); }
+
+/* ---- Glossary ----------------------------------------------------------- */
+.glossary dt { font-weight: 700; color: var(--navy); margin-top: var(--sp-4); }
+.glossary dd { margin: var(--sp-1) 0 0; color: var(--body); }

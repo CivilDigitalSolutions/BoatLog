@@ -9,6 +9,9 @@
 - [Safety](https://boatlog.civildigital.co.uk/safety/): RAG safety flag, overdue-outing alerts and incident logging
 - [Incident reporting](https://boatlog.civildigital.co.uk/incident-reporting/): how BoatLog supports British Rowing's incident reporting process
 - [Damage reporting](https://boatlog.civildigital.co.uk/damage-reporting/): defects, repairs and taking boats out of service
+- [Boat Booking Software for Rowing Clubs](https://boatlog.civildigital.co.uk/boat-bookings/): A club-wide boat booking calendar for rowing clubs: book a boat from your phone, clashes blocked, no-shows released automatically, and limits on how far ahead.
+- [Rowing Club Membership & Subs Software](https://boatlog.civildigital.co.uk/membership-subs/): Track rowing club memberships and subs: categories, who has paid, renewals and reminders, card and Direct Debit payments, and cash or cheque records.
+- [Track Swim Tests, DBS & Coaching Qualifications](https://boatlog.civildigital.co.uk/qualifications-tracking/): Track rowing club qualifications: swim tests, capsize drills, DBS checks, Powerboat Level 2 and first aid, with expiry dates, verification and reminders.
 
 ## Guides
 
@@ -45,6 +48,12 @@
 - [Rowing in hot weather: heat safety for clubs](https://boatlog.civildigital.co.uk/guides/rowing-in-hot-weather/): How rowing clubs can manage hot weather: heat exhaustion signs, timing outings, water and shade, and club rules for very hot days.
 - [Rowing, sewage and Weil's disease: a club guide](https://boatlog.civildigital.co.uk/guides/water-quality-sewage-weils-disease/): Water quality for UK rowers: sewage overflows, Weil's disease (leptospirosis), hygiene after rowing, and how clubs can tell members when to stay off the water.
 - [Running a Learn to Row course: a club guide](https://boatlog.civildigital.co.uk/guides/running-learn-to-row-course/): How a rowing club can run a Learn to Row course: planning, safety, swim tests, stable boats, coaching ratios, and turning beginners into members.
+- [Rowing glossary: terms every new rower hears](https://boatlog.civildigital.co.uk/guides/rowing-glossary/): A short rowing glossary for new members and parents: boat classes, parts of the boat, coaching calls, racing terms and club safety words.
+- [Choosing rowing club software: a checklist](https://boatlog.civildigital.co.uk/guides/choosing-rowing-club-software/): What to look for in rowing club management software: offline sign-out, safety, bookings, repairs, memberships, qualifications, data protection and cost.
+- [After the regatta: a boat check and repair routine](https://boatlog.civildigital.co.uk/guides/post-regatta-boat-check/): A short routine for checking boats after a regatta or head race: unloading, what to inspect, logging damage and keeping damaged boats out of use.
+- [Head race cancelled? How stream and weather decisions are made](https://boatlog.civildigital.co.uk/guides/head-race-cancelled/): Why rowing head races are cancelled for strong stream, wind or storms, who decides, and how your club can plan for a cancellation.
+- [River circulation patterns for rowing, explained](https://boatlog.civildigital.co.uk/guides/river-circulation-patterns/): What a rowing circulation pattern is, why every stretch of river has its own, and how clubs can make sure members and visitors follow it.
+- [Coastal rowing and beach sprints: safety basics](https://boatlog.civildigital.co.uk/guides/coastal-rowing-beach-sprints-safety/): Safety basics for coastal rowing and beach sprints: sea conditions, tides, buoyancy, safety cover and planning, with pointers to British Rowing's guidance.
 
 ## Contact
 
