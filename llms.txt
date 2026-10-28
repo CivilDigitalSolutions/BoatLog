@@ -55,6 +55,12 @@
 - [River circulation patterns for rowing, explained](https://boatlog.civildigital.co.uk/guides/river-circulation-patterns/): What a rowing circulation pattern is, why every stretch of river has its own, and how clubs can make sure members and visitors follow it.
 - [Coastal rowing and beach sprints: safety basics](https://boatlog.civildigital.co.uk/guides/coastal-rowing-beach-sprints-safety/): Safety basics for coastal rowing and beach sprints: sea conditions, tides, buoyancy, safety cover and planning, with pointers to British Rowing's guidance.
 
+## Pricing
+
+- Priced by club size; every plan includes every feature. Subscribing on the web by card: £20 a month (up to 50 people), £50 a month (up to 150), £80 a month (unlimited). Advanced Analytics is £100 a month on top of any plan.
+- 14-day free trial, no card needed.
+- Subscribing on the web is the best price. Plans bought inside the BoatLog Android app are billed through Google Play and cost more, because Google adds VAT and its own fee.
+
 ## Contact
 
 - info@civildigital.co.uk
